@@ -2,7 +2,7 @@
 
 namespace Kiwari\Util;
 
-abstract class Request
+class Parser
 {
     
 }

@@ -2,30 +2,48 @@
 
 use PHPUnit\Framework\TestCase;
 use Kiwari\Kiwari;
+use InvalidArgumentException;
 
 class KiwariTest extends TestCase
 {
-    public function testA(): void
+    private $accessToken = null;
+    private $bot = null;
+    private $botNull = null;
+
+    public function setUp(): void 
     {
-        $this->assertEquals(
-            'user@example.com',
-            'user@example.com'
-        );
+        $this->accessToken = 'dummy-access-token';
+        $this->bot = new Kiwari($this->accessToken);
     }
 
-    public function testB(): void
+    public function testGivenNullAccessTokenThenShowError(): void
     {
-        $this->assertEquals(
-            'user@example.com',
-            'user@example.com'
-        );
+        $this->expectException(InvalidArgumentException::class);
+
+        $this->botNull = new Kiwari(null);
     }
 
-    public function testC(): void
+    public function testGivenAccessTokenThenShowAccessToken(): void
     {
-        $this->assertEquals(
-            'user@example.com',
-            'user@example.com'
-        );
+        $this->assertEquals($this->accessToken, $this->bot->getAccessToken());
     }
+
+    public function testGivenDisableLogThenLogFalse(): void 
+    {
+        $enableLog = $this->bot->isEnableLog();
+        
+        $this->assertIsBool($enableLog);
+        $this->assertEquals(false, $enableLog);
+    }
+
+    public function testGivenEnableLogThenLogTrue(): void 
+    {
+        $this->bot->enableLog(true);
+        $enableLog = $this->bot->isEnableLog();
+        
+        $this->assertIsBool($enableLog);
+        $this->assertEquals(true, $enableLog);
+    }
+
+    
 }

@@ -12,7 +12,8 @@
     "minimum-stability": "dev",
     "require": {
         "php": ">=5.3.0",
-        "mashape/unirest-php": "dev-master"
+        "mashape/unirest-php": "dev-master",
+        "vlucas/phpdotenv": "^3.3@dev"
     },
     "autoload": {
         "psr-4": {
