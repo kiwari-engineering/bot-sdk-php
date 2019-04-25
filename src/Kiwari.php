@@ -5,6 +5,7 @@ namespace Kiwari;
 use InvalidArgumentException;
 use Kiwari\Handler\SendText;
 use Kiwari\Handler\SendDocument;
+use Kiwari\Handler\SendCard;
 use Kiwari\Handler\Uploader;
 
 class Kiwari
@@ -78,9 +79,13 @@ class Kiwari
 
     }
 
-    public function sendCard()
+    public function sendCard(int $roomId)
     {
+        if ($roomId < 1) {
+            throw new InvalidArgumentException("ROOM_ID can't be 0 [zero]");
+        }
 
+        return SendCard::request($this->getAccessToken(), $roomId);
     }
 
     public function sendCarousel()
