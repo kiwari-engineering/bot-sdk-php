@@ -4,6 +4,8 @@ namespace Kiwari;
 
 use InvalidArgumentException;
 use Kiwari\Handler\SendText;
+use Kiwari\Handler\SendDocument;
+use Kiwari\Handler\Uploader;
 
 class Kiwari
 {
@@ -91,9 +93,13 @@ class Kiwari
 
     }
 
-    public function sendDocument()
+    public function sendDocument(int $roomId, $fileUrl, $caption = null)
     {
+        if ($roomId < 1) {
+            throw new InvalidArgumentException("ROOM_ID can't be 0 [zero]");
+        }
 
+        return SendDocument::request($this->getAccessToken(), $roomId, $fileUrl, $caption);
     }
 
     public function sendImage()
@@ -120,8 +126,8 @@ class Kiwari
         return SendText::request($this->getAccessToken(), $roomId, $message);
     }
 
-    public function upload()
+    public function upload($filePath)
     {
-
+        return Uploader::upload($this->getAccessToken(), $filePath);
     }
 }
