@@ -3,11 +3,10 @@
 namespace Kiwari;
 
 use InvalidArgumentException;
+use Kiwari\Handler\SendText;
 
 class Kiwari
 {
-    const ENGINE_URL = 'https://qisme.qiscus.com/api/v1/chat/conversations/post_comment';
-
     private $accessToken;
     private $enableLog = false;
     private $decodedMessage;
@@ -36,7 +35,7 @@ class Kiwari
         return $this->enableLog;
     }
 
-    public function handleIncomingMessage()
+    public function run()
     {
         $rawData = file_get_contents('php://input');
 
@@ -47,8 +46,8 @@ class Kiwari
             if (!file_exists($tmpPath)) {
                 mkdir($tmpPath);
             }
-            $tmpFile = tempnam($tmpPath, 'kiwari-bot-log');
-            file_put_contents($tmpFile, $rawData, FILE_APPEND);   
+            $tmpFile = $tmpPath . DIRECTORY_SEPARATOR . 'kiwari-bot.log';
+            file_put_contents($tmpFile, $rawData . "\n", FILE_APPEND);   
         }
     }
 
@@ -112,9 +111,13 @@ class Kiwari
 
     }
 
-    public function sendText()
+    public function sendText(int $roomId = 0, string $message = '')
     {
+        if ($roomId < 1) {
+            throw new InvalidArgumentException("ROOM_ID can't be 0 [zero]");
+        }
 
+        return SendText::request($this->getAccessToken(), $roomId, $message);
     }
 
     public function upload()

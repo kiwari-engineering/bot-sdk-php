@@ -4,30 +4,19 @@ namespace Kiwari\Handler;
 
 use Unirest\Request;
 use Unirest\Request\Body;
+use Kiwari\Util\Url;
 
 class SendText
 {
-
-    public function printMessage()
+    public static function request($accessToken, int $roomId, string $message)
     {
-        echo 'this is from send text';
+        return Request::post(Url::POST_MESSAGE, [
+            'Accept' => 'application/json'
+        ], Body::form([
+            'access_token' => $accessToken,
+            'type' => 'text',
+            'topic_id' => $roomId,
+            'comment' => $message
+        ]));
     }
-
-    public function halo()
-    {
-        $headers = ['Accept' => 'application/json'];
-        $data = [
-            'access_token' => 'eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyODcsInRpbWVzdGFtcCI6IjIwMTktMDQtMjIgMDc6NDE6MTkgKzAwMDAifQ._VfhBwYmFUAha_Xd-gPCLtMZz5p60xVXEMwCmJkhZug',
-            'topic_id' => 2155674,
-            'comment' => 'halo topan, ini dari kiwari sdk php',
-            'type' => 'text'
-        ];
-
-        $body = Body::form($data);
-
-        $response = Request::post('https://qisme.qiscus.com/api/v1/chat/conversations/post_comment', $headers, $body);
-
-        var_dump($response);
-    }
-    
 }

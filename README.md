@@ -28,8 +28,8 @@ require 'vendor/autoload.php';
 $bot = new \Kiwari\Kiwari('your-access-token-here');
 $bot->enableLog(true); // you can enable log, the log file is inside your tmp
 
-//now you need to call the handler here
-$bot->handleIncomingMessage();
+//now you need to run the bot
+$bot->run();
 
 //and now you can get the incomming data by using :
 $bot->getSender();
@@ -133,7 +133,7 @@ $ ngrok http 3000
 * Now you can access your webhook url online in the internet like below
 
 ```
-Forwarding                    https://66bfe848.ngrok.io -> localhost:3000  
+Forwarding                    https://xxxxxxxx.ngrok.io -> localhost:3000  
 ```
 
 * Register the url in the Kiwari dashboard
