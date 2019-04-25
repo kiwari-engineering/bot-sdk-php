@@ -45,5 +45,10 @@ class KiwariTest extends TestCase
         $this->assertEquals(true, $enableLog);
     }
 
-    
+    public function testGivenZeroRoomIdThenShowException(): void
+    {
+        $this->expectException(InvalidArgumentException::class);
+
+        $this->bot->sendText();
+    }
 }
