@@ -4,7 +4,18 @@ namespace Kiwari\Handler;
 
 class SendDocument
 {
-    
+    public static function request($accessToken, int $roomId, string $message)
+    {
+        return Request::post(Url::POST_MESSAGE, [
+            'Accept' => 'application/json'
+        ], Body::form([
+            'access_token' => $accessToken,
+            'type' => 'document',
+            'topic_id' => $roomId,
+            'comment' => $message,
+            // 'payload' => 
+        ]));
+    }
 }
 // # file_attachment
 // {
