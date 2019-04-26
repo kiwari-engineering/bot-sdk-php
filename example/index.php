@@ -7,12 +7,14 @@ $dotenv->load();
 
 $bot = new \Kiwari\Kiwari(getenv('ACCESS_TOKEN'));
 $bot->enableLog(true);
-
-echo $bot->getAccessToken();
-
 $bot->run();
 
+$sender = $bot->getSender();
 $room = $bot->getChatRoom();
+$message = $bot->getMessage();
+
+// $bot->sendText($room['qiscus_room_id'], 'halo bro, ini dari kiwari bot sdk php');
+
 // $path = '/Users/andhikayuana/Downloads/wav_wav_wavv.mp3';
 // $uploadedFile = $bot->upload($path);
 $fileUrl = 'https://d1edrlpyc25xu0.cloudfront.net/kiwari-prod/raw/upload/iaczqmgLLJ/wav_wav_wavv.mp3';
@@ -34,14 +36,14 @@ $buttons = [
             )
         ];
 
-// $res = $bot->sendButton($room['qiscus_room_id']);
+// $res = $bot->sendButton($room['qiscus_room_id'], [$btn1]);
 // $res = $bot->sendCard($room['qiscus_room_id']);
 // $res = $bot->sendCarousel($room['qiscus_room_id']);
 // $res = $bot->sendCustom($room['qiscus_room_id']);
 // $res = $bot->sendDocument($room['qiscus_room_id'], $fileUrl);
 // $res = $bot->sendImage($room['qiscus_room_id']);
 // $res = $bot->sendLocation($room['qiscus_room_id']);
-// $res = $bot->sendReply($room['qiscus_room_id']);
+$res = $bot->sendReply($room['qiscus_room_id']);
 // $res = $bot->sendText($room['qiscus_room_ids'], $text);
 
 

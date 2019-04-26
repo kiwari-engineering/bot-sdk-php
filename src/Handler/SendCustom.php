@@ -7,7 +7,7 @@ use Kiwari\Util\Url;
 
 class SendCustom
 {
-    public static function request($accessToken, int $roomId, string $message)
+    public static function request($accessToken, int $roomId)
     {
         return Request::post(Url::POST_MESSAGE, [
             'Accept' => 'application/json'
@@ -16,12 +16,10 @@ class SendCustom
             'type' => 'custom',
             'topic_id' => $roomId,
             'comment' => $message,
-            // 'payload' => 
+            'payload' => json_encode([
+                "type" => "promo", // sub type of custom payload
+                "content" => ["a" => 1] // can be anything => object, array, string, number in JSON
+            ])
         ]));
     }
 }
-// # custom
-// {
-//     "type": "promo", // sub type of custom payload
-//     "content": {} // can be anything: object, array, string, number in JSON
-// }

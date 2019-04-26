@@ -7,23 +7,18 @@ use Kiwari\Util\Url;
 
 class SendReply
 {
-    public static function request($accessToken, int $roomId, string $message)
+    public static function request($accessToken, int $roomId)
     {
         return Request::post(Url::POST_MESSAGE, [
             'Accept' => 'application/json'
         ], Body::form([
             'access_token' => $accessToken,
-            'type' => 'text',
-            'topic_id' => $roomId,
-            'comment' => $message,
-            // 'payload' => 
+            'type' => 'reply',
+            'topic_id' => 829055,
+            'payload' => json_encode([
+                "text" => "ini comment",
+                "replied_comment_id" => 20900820
+            ])
         ]));
     }
 }
-
-// # reply
-// ## reply from specified message
-// {
-//     "text": "ini comment",
-//     "replied_comment_id": 16227
-// }
