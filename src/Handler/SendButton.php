@@ -7,7 +7,7 @@ use Kiwari\Util\Url;
 
 class SendButton
 {
-    public static function request($accessToken, $roomId, $text, $btn)
+    public static function request($accessToken, int $roomId, string $text, array $btns = [])
     {
         return Request::post(Url::POST_MESSAGE, [
             'Accept' => 'application/json'
@@ -17,7 +17,7 @@ class SendButton
             'topic_id' => 829055,
             'payload' => json_encode([
                 "text" => $text,
-                "buttons" => $btn
+                "buttons" => $btns
             ])
             // 'payload' =>  json_encode([
             //     "text"=> "jangan dipencet ya... ini cuma testing",

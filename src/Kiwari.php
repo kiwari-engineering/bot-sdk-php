@@ -82,13 +82,13 @@ class Kiwari
         return $this->decodedMessage['message'];
     }
 
-    public function sendButton(int $roomId, $text, $payload)
+    public function sendButton(int $roomId, string $text = 'no text', array $btns = [])
     {
         if ($roomId < 1) {
             throw new InvalidArgumentException("ROOM_ID can't be 0 [zero]");
         }
 
-        return SendButton::request($this->getAccessToken(), $roomId, $text, $payload);
+        return SendButton::request($this->getAccessToken(), $roomId, $text, $btns);
     }
 
     public function sendCard(int $roomId, $text, $card, $btn)
