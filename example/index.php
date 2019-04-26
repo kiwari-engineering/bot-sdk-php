@@ -64,8 +64,8 @@ $card = Card::create()
 
 
 
-// $res = $bot->sendButton($room['qiscus_room_id'], $text, [$btn, $btn2]);
-$res = $bot->sendCard($room['qiscus_room_id'],$text, $card, [$btn]);
+$res = $bot->sendButton($room['qiscus_room_id'], $text, [$btn, $btn2]);
+// $res = $bot->sendCard($room['qiscus_room_id'],$text, $card, [$btn]);
 // $res = $bot->sendCarousel($room['qiscus_room_id']);
 // $res = $bot->sendCustom($room['qiscus_room_id']);
 // $res = $bot->sendDocument($room['qiscus_room_id'], $fileUrl);
