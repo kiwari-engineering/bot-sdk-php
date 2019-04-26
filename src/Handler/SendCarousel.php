@@ -1,10 +1,13 @@
 <?php
 
 namespace Kiwari\Handler;
+use Unirest\Request;
+use Unirest\Request\Body;
+use Kiwari\Util\Url;
 
 class SendCarousel
 {
-    public static function request($accessToken, int $roomId, string $message)
+    public static function request($accessToken, int $roomId)
     {
         return Request::post(Url::POST_MESSAGE, [
             'Accept' => 'application/json'
@@ -13,46 +16,44 @@ class SendCarousel
             'type' => 'carousel',
             'topic_id' => $roomId,
             'comment' => $message,
-            // 'payload' => 
+            'payload' => json_encode([
+                "cards" => [
+                    [
+                        "image" => "http://arterinews.com/wp-content/uploads/2018/01/sp-sq.jpg",
+                        "title" => "Imajinasi....... for life",
+                        "description" => "hehehe\n96% (666 feedback)\nRp 4.123.000.00,-\nBUY 2 GET 1 FREE!!!",
+                        "default_action" => [
+                            "type" => "postback",
+                            "postback_text" => "Load more", // required only when type is postback
+                            "payload" => [
+                                "url" => "http://www.yahoo.com",
+                                "method" => "get",
+                                "payload" => null
+                            ]
+                        ],
+                        "buttons" => [
+                            [
+                                "label" => "go to home",
+                                "type" => "link",
+                                "postback_text" => "Load more",
+                                "payload" => [
+                                    "url" => "https://pics.me.me/ponytago-home-youre-drunk-rt-pokemoniife-go-home-ponta-your-18615138.png",
+                                    "method" => "get",
+                                    "payload" => null
+                                ]
+                            ],
+                            [
+                                "label" => "go to twitter",
+                                "type" => "link",
+                                "payload" => [
+                                    "method" => "get", 
+                                    "url" => "http://www.twitter.com"
+                                ]
+                            ]
+                        ]
+                    ]
+                ]
+            ])
         ]));
     }
 }
-// # carousel
-// {
-//     "cards": [
-//         {
-//             "image": "http://url.com/gambar.jpg",
-//             "title": "Atasan Blouse Tunik Wanita Baju Muslim Worie Longtop",
-//             "description": "Oleh sippnshop\n96% (666 feedback)\nRp 49.000.00,-\nBUY 2 GET 1 FREE!!!",
-//             "default_action": {
-//                 "type": "postback",
-//                 "postback_text": "Load more", // required only when type is postback
-//                 "payload": {
-//                     "url": "http://url.com/baju?id=123&track_from_chat_room=123",
-//                     "method": "get",
-//                     "payload": null
-//                 }
-//             },
-//             "buttons": [
-//                 {
-//                     "label": "button1",
-//                     "type": "postback",
-//                     "postback_text": "Load more",
-//                     "payload": {
-//                         "url": "http://somewhere.com/button1",
-//                         "method": "get",
-//                         "payload": null
-//                     }
-//                 },
-//                 {
-//                     "label": "button2",
-//                     "type": "link",
-//                     "payload": {
-//                         "method": "get", 
-//                         "url": "http://somewhere.com/button2?id=123"
-//                     }
-//                 }
-//             ]
-//         }
-//     ]
-// }

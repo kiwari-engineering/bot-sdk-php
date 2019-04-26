@@ -1,7 +1,6 @@
 <?php
 
 namespace Kiwari\Handler;
-
 use Unirest\Request;
 use Unirest\Request\Body;
 use Kiwari\Util\Url;

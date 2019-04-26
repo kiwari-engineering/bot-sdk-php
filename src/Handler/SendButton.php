@@ -1,10 +1,13 @@
 <?php
 
 namespace Kiwari\Handler;
+use Unirest\Request;
+use Unirest\Request\Body;
+use Kiwari\Util\Url;
 
 class SendButton
 {
-    public static function request($accessToken, $roomId, $message, $buttons)
+    public static function request($accessToken, $roomId)
     {
         return Request::post(Url::POST_MESSAGE, [
             'Accept' => 'application/json'
@@ -12,49 +15,29 @@ class SendButton
             'access_token' => $accessToken,
             'type' => 'buttons',
             'topic_id' => $roomId,
-            'payload' =>  array (
-                "text"=> "silahkan pencet",
+            'payload' =>  json_encode([
+                "text"=> "jangan dipencet ya... ini cuma testing",
                 "buttons"=> [
-                    array (
+                    [
                         "label"=> "button1",
-                        "type"=> "postback",
-                        "payload"=> array(
-                            "url"=> "http//:www.google.com",
+                        "type"=> "link",
+                        "payload"=> [
+                            "url"=> "https://www.google.com",
                             "method"=> "get",
                             "payload"=> null
-                        )
-                    ),
-                    array (
+                        ]
+                    ],
+                    [
                         "label"=> "button2",
-                        "type"=> "link",
-                        "payload"=> array(
-                            "url"=> "http//:www.google.com/button2?id=123"
-                        )
-                    )
+                        "type"=> "postback",
+                        "payload"=> [
+                            "url"=> "https://www.yahoo.com",
+                            "method"=> "get",
+                            "payload"=> null
+                        ]
+                    ]
                 ]
-            )
+            ])
         ]));
     }
 }
-// # buttons
-// {
-//     "text": "silahkan pencet",
-//     "buttons": [
-//         {
-//             "label": "button1",
-//             "type": "postback",
-//             "payload": {
-//                 "url": "http://somewhere.com/button1",
-//                 "method": "get",
-//                 "payload": null
-//             }
-//         },
-//         {
-//             "label": "button2",
-//             "type": "link",
-//             "payload": {
-//                 "url": "http://somewhere.com/button2?id=123"
-//             }
-//         }
-//     ]
-// }

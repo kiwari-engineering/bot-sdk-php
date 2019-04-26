@@ -17,7 +17,7 @@ class SendCard
             'type' => 'card',
             'topic_id' => $roomId,
             'payload' => json_encode([
-                "text" => "Special deal buat sista nih..",
+                "text" => "Pilih sesuatu ? hmm...",
                 "image" => "https://content.halocdn.com/media/Default/games/halo-5-guardians/page/h5-guardians-facebook-1200x630-ba103624b3f34af79fe8cb2d340dce3f.jpg",
                 "title" => "May Spaghetti be with Jarjit",
                 "description" => "Oleh sippnshop\n96% (666 feedback)\nRp 49.000.00,-\nBUY 2 GET 1 FREE!!!",
