@@ -1,15 +1,15 @@
 <?php
 
 use PHPUnit\Framework\TestCase;
-use Kiwari\Model\Button;
+use Kiwari\Model\Custom;
 
-class ButtonTest extends TestCase
+class CustomTest extends TestCase
 {
     public function testGivenNullLabelThenShowError(): void
     {
         $this->expectException(\InvalidArgumentException::class);
 
-        Button::create()
+        Custom::create()
             ->setLabel(null);
     }
 
@@ -17,12 +17,12 @@ class ButtonTest extends TestCase
     {
         $label = 'Hello World';
 
-        $btn = Button::create()
+        $btn = Custom::create()
                     ->setLabel($label);
         
         $this->assertEquals($btn->getLabel(), $label);
-        $this->assertEquals($btn->getMethod(), Button::METHOD_GET);
-        $this->assertEquals($btn->getType(), Button::TYPE_LINK);
+        $this->assertEquals($btn->getMethod(), Custom::METHOD_GET);
+        $this->assertEquals($btn->getType(), Custom::TYPE_LINK);
         $this->assertEquals($btn->getUrl(), null);
         $this->assertEquals($btn->getPayload(), null);
     }
@@ -40,16 +40,16 @@ class ButtonTest extends TestCase
             'payment' => 'BCA'
         ];
 
-        $btn = Button::create()
+        $btn = Custom::create()
                     ->setLabel($label)
-                    ->setMethod(Button::METHOD_POST)
-                    ->setType(Button::TYPE_POSTBACK)
+                    ->setMethod(Custom::METHOD_POST)
+                    ->setType(Custom::TYPE_POSTBACK)
                     ->setPayload($payload);
         var_dump(json_encode($btn));
         
         $this->assertEquals($btn->getLabel(), $label);
-        $this->assertEquals($btn->getMethod(), Button::METHOD_POST);
-        $this->assertEquals($btn->getType(), Button::TYPE_POSTBACK);
+        $this->assertEquals($btn->getMethod(), Custom::METHOD_POST);
+        $this->assertEquals($btn->getType(), Custom::TYPE_POSTBACK);
         $this->assertEquals($btn->getUrl(), null);
         $this->assertEquals($btn->getPayload(), $payload);
     }
@@ -67,21 +67,21 @@ class ButtonTest extends TestCase
             'payment' => 'Mandiri'
         ];
 
-        $btn = Button::create()
+        $btn = Custom::create()
                     ->setLabel($label)
-                    ->setMethod(Button::METHOD_POST)
-                    ->setType(Button::TYPE_POSTBACK)
+                    ->setMethod(Custom::METHOD_POST)
+                    ->setType(Custom::TYPE_POSTBACK)
                     ->setPayload($payload);
 
         $this->assertEquals($btn->getLabel(), $label);
-        $this->assertEquals($btn->getMethod(), Button::METHOD_POST);
-        $this->assertEquals($btn->getType(), Button::TYPE_POSTBACK);
+        $this->assertEquals($btn->getMethod(), Custom::METHOD_POST);
+        $this->assertEquals($btn->getType(), Custom::TYPE_POSTBACK);
         $this->assertEquals($btn->getUrl(), null);
         $this->assertEquals($btn->getPayload(), $payload);
 
         $this->assertEquals(json_encode($btn), json_encode([
-            'type' => Button::TYPE_POSTBACK,
-            'method' => Button::METHOD_POST,
+            'type' => Custom::TYPE_POSTBACK,
+            'method' => Custom::METHOD_POST,
             'label' => $label,
             'payload' => $payload,
             'url' => null
@@ -93,13 +93,13 @@ class ButtonTest extends TestCase
         $label = 'Go to Facebook';
         $url = 'https://www.facebook.com';
 
-        $btn = Button::create()
+        $btn = Custom::create()
                     ->setLabel($label)
                     ->setUrl($url);
 
         $this->assertEquals($btn->getLabel(), $label);
-        $this->assertEquals($btn->getMethod(), Button::METHOD_GET);
-        $this->assertEquals($btn->getType(), Button::TYPE_LINK);
+        $this->assertEquals($btn->getMethod(), Custom::METHOD_GET);
+        $this->assertEquals($btn->getType(), Custom::TYPE_LINK);
         $this->assertEquals($btn->getUrl(), $url);
         $this->assertEquals($btn->getPayload(), null);
     }

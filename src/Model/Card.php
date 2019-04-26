@@ -1,0 +1,73 @@
+<?php
+
+namespace Kiwari\Model;
+
+use InvalidArgumentException;
+
+class Card implements \JsonSerializable
+{
+    private $image;
+    private $title;    
+    private $description;
+    private $url;
+
+    public function setImage($image)
+    {
+        if ($image == null) {
+            throw new InvalidArgumentException("image is required");
+        }
+        $this->image = $image;
+        return $this;
+    }
+
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    public function setTitle($title)
+    {
+        if ($title == null) {
+            throw new InvalidArgumentException("title is required");
+        }
+        $this->title = $title;
+        return $this;
+    }
+
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    public function setUrl($url)
+    {
+        $this->url = $url;
+        return $this;
+    }
+
+    public function getUrl()
+    {
+        return $this->url;
+    }
+
+    public function setDescription($description = [])
+    {
+        $this->description = $description;
+        return $this;
+    }
+
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    public static function create()
+    {
+        return new self();
+    }
+
+    public function jsonSerialize()
+    {
+        return get_object_vars($this);
+    }
+}
