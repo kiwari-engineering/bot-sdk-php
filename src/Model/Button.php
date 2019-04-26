@@ -15,7 +15,7 @@ class Button implements \JsonSerializable
     private $type = self::TYPE_LINK;
     private $method = self::METHOD_GET;
     private $label;
-    private $payload;
+    private $payload = [];
     private $url;
 
     public function setLabel($label)

@@ -5,6 +5,7 @@ namespace Kiwari;
 use InvalidArgumentException;
 use Kiwari\Handler\SendText;
 use Kiwari\Handler\SendDocument;
+use Kiwari\Handler\SendButton;
 use Kiwari\Handler\Uploader;
 
 class Kiwari
@@ -73,9 +74,13 @@ class Kiwari
         return $this->decodedMessage['message'];
     }
 
-    public function sendButton()
+    public function sendButton(int $roomId, string $text = 'no text', array $btns = [])
     {
+        if ($roomId < 1) {
+            throw new InvalidArgumentException("ROOM_ID can't be 0 [zero]");
+        }
 
+        return SendButton::request($this->getAccessToken(), $roomId, $text, $btns);
     }
 
     public function sendCard()
