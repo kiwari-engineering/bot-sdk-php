@@ -7,14 +7,13 @@ $dotenv->load();
 
 $bot = new \Kiwari\Kiwari(getenv('ACCESS_TOKEN'));
 $bot->enableLog(true);
-
-echo $bot->getAccessToken();
-
 $bot->run();
 
+$sender = $bot->getSender();
 $room = $bot->getChatRoom();
+$message = $bot->getMessage();
 
-// $bot->sendText($room['qiscus_room_ids'], 'halo bro, ini dari kiwari bot sdk php');
+$bot->sendText($room['qiscus_room_id'], 'halo bro, ini dari kiwari bot sdk php');
 
 // $path = '/Users/andhikayuana/Downloads/wav_wav_wavv.mp3';
 // $uploadedFile = $bot->upload($path);

@@ -2,7 +2,6 @@
 
 use PHPUnit\Framework\TestCase;
 use Kiwari\Kiwari;
-use InvalidArgumentException;
 
 class KiwariTest extends TestCase
 {
@@ -18,9 +17,10 @@ class KiwariTest extends TestCase
 
     public function testGivenNullAccessTokenThenShowError(): void
     {
-        $this->expectException(InvalidArgumentException::class);
+        $this->expectException(\InvalidArgumentException::class);
 
         $this->botNull = new Kiwari(null);
+        $this->botNull->getAccessToken();
     }
 
     public function testGivenAccessTokenThenShowAccessToken(): void
