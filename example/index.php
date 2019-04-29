@@ -103,15 +103,28 @@ $location = Location::create()
     ->setEncryptedLatitude($encrypted_latitude)
     ->setEncryptedLongitude($encrypted_longitude);
 
-// $res = $bot->sendButton($room['qiscus_room_id'], $text, [$btn, $btn2]);
+$reply = Reply::create()
+    ->setText($text)
+    ->setRepliedCommentId(20900820);
+
+$type = "promo"; 
+$content = ["message" => "ini custom kok"];
+
+$custom = Custom::create()
+    ->setType($type)
+    ->setContent($content);
+
+
+
+// $res = $bot->sendButton(829055, $text, [$btn, $btn2]);
 // $res = $bot->sendCard(829055,$text, $card);
 // $res = $bot->sendCarousel(829055, $carousel);
-// $res = $bot->sendCustom($room['qiscus_room_id']);
+$res = $bot->sendCustom(829055, $custom);
 // $res = $bot->sendDocument(829055, $file);
 // $res = $bot->sendImage(829055, $file);
-$res = $bot->sendLocation(829055, $location);
-// $res = $bot->sendReply($room['qiscus_room_id']);
-// $res = $bot->sendText($room['qiscus_room_ids'], $text);
+// $res = $bot->sendLocation(829055, $location);
+// $res = $bot->sendReply(829055, $reply);
+// $res = $bot->sendText(829055, $text);
 
 // $bot->sendButton($roomId, 'teksnya', [$btn. $btn1])
 

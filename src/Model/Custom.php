@@ -6,34 +6,14 @@ use InvalidArgumentException;
 
 class Custom implements \JsonSerializable
 {
-    const TYPE_POSTBACK = 'postback';
-    const TYPE_LINK = 'link';
-
-    const METHOD_GET = 'get';
-    const METHOD_POST = 'post';
-
-    private $type = self::TYPE_LINK;
-    private $method = self::METHOD_GET;
-    private $label;
-    private $payload;
-    private $url;
-
-    public function setLabel($label)
-    {
-        if ($label == null) {
-            throw new InvalidArgumentException("label is required");
-        }
-        $this->label = $label;
-        return $this;
-    }
-
-    public function getLabel()
-    {
-        return $this->label;
-    }
+    private $type;
+    private $content;
 
     public function setType($type)
     {
+        if ($type == null) {
+            throw new InvalidArgumentException("type is required");
+        }
         $this->type = $type;
         return $this;
     }
@@ -43,37 +23,18 @@ class Custom implements \JsonSerializable
         return $this->type;
     }
 
-    public function setMethod($method)
+    public function setContent($content)
     {
-        $this->method = $method;
+        if ($content == null) {
+            throw new InvalidArgumentException("content is required");
+        }
+        $this->content = $content;
         return $this;
     }
 
-    public function getMethod()
+    public function getContent()
     {
-        return $this->method;
-    }
-
-    public function setUrl($url)
-    {
-        $this->url = $url;
-        return $this;
-    }
-
-    public function getUrl()
-    {
-        return $this->url;
-    }
-
-    public function setPayload($payload = [])
-    {
-        $this->payload = $payload;
-        return $this;
-    }
-
-    public function getPayload()
-    {
-        return $this->payload;
+        return $this->content;
     }
 
     public static function create()
