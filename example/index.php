@@ -13,26 +13,62 @@ $sender = $bot->getSender();
 $room = $bot->getChatRoom();
 $message = $bot->getMessage();
 
-$bot->sendText($room['qiscus_room_id'], 'halo bro, ini dari kiwari bot sdk php');
+switch ($message['text']) {
+    case '/help':
+        # code...
+        $res2 = $bot->sendButton($room['qiscus_room_id'], 'Ini adalah contoh teksnya ya atau bisa jadi deskripsinya', [
+            \Kiwari\Model\Button::create()
+                ->setLabel('Google')
+                ->setUrl('https://google.com'),
+            \Kiwari\Model\Button::create()
+                ->setLabel('Facebook')
+                ->setUrl('https://facebook.com'),
+            \Kiwari\Model\Button::create()
+                ->setLabel('Twitter')
+                ->setUrl('https://twitter.com')
+        ]);
+
+        break;
+
+    case '/info':
+    
+        $res = $bot->sendText($room['qiscus_room_id'], 'ini adalah info');
+
+        break;
+
+    
+    case '/score':
+
+        $res = $bot->sendText($room['qiscus_room_id'], 'ini adalah score');
+
+        break;
+    
+    default:
+        # code...
+        $bot->sendText($room['qiscus_room_id'], 'Aduh, aku ga ngerti nih :P, tolong ketik /help');
+        break;
+}
+
+// $bot->sendText($room['qiscus_room_id'], 'halo bro, ini dari kiwari bot sdk php');
 // $bot->sendText(829055, 'hai');
 
-$path = '/Users/andhikayuana/Downloads/wav_wav_wavv.mp3';
-$uploadedFile = $bot->upload($path);
-var_dump($uploadedFile->body->data->url);
+// $path = '/Users/andhikayuana/Downloads/wav_wav_wavv.mp3';
+// $uploadedFile = $bot->upload($path);
+// var_dump($uploadedFile->body->data->url);
 // $fileUrl = 'https://d1edrlpyc25xu0.cloudfront.net/kiwari-prod/raw/upload/iaczqmgLLJ/wav_wav_wavv.mp3';
-$res = $bot->sendDocument($room['qiscus_room_id'], $uploadedFile->body->data->url);
-var_dump($res);
-$res2 = $bot->sendButton($room['qiscus_room_id'], 'Ini adalah contoh teksnya ya atau bisa jadi deskripsinya', [
-    \Kiwari\Model\Button::create()
-        ->setLabel('Google')
-        ->setUrl('https://google.com'),
-    \Kiwari\Model\Button::create()
-        ->setLabel('Facebook')
-        ->setUrl('https://facebook.com'),
-    \Kiwari\Model\Button::create()
-        ->setLabel('Twitter')
-        ->setUrl('https://twitter.com')
-]);
+// $res = $bot->sendDocument($room['qiscus_room_id'], $uploadedFile->body->data->url);
+// var_dump($res);
+// $res2 = $bot->sendButton($room['qiscus_room_id'], 'Ini adalah contoh teksnya ya atau bisa jadi deskripsinya', [
+//     \Kiwari\Model\Button::create()
+//         ->setLabel('Google')
+//         ->setUrl('https://google.com'),
+//     \Kiwari\Model\Button::create()
+//         ->setLabel('Facebook')
+//         ->setUrl('https://facebook.com'),
+//     \Kiwari\Model\Button::create()
+//         ->setLabel('Twitter')
+//         ->setUrl('https://twitter.com')
+// ]);
 
 // var_dump($res2);
 // var_dump($bot->getSender());
