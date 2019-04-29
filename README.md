@@ -118,6 +118,7 @@ $message = $bot->getMessage();
 * Now you can send the message into the opponent user by call the method that provided like below
 
 * **Send Message Text**
+
 ```php
 $response = $bot->sendText($room['qiscus_room_id'], 'Hello, this is from Kiwari Bot SDK PHP');
 
@@ -125,6 +126,9 @@ var_dump($response); //you can see the response if you need to debug or somethin
 ```
 
 * **Send Button**
+
+_More example, please see the test [here](tests/Model/ButtonTest.php)_
+
 ```php
 $response = $bot->sendButton($room['qiscus_room_id'], 'This is message Example', [
     \Kiwari\Model\Button::create()
@@ -142,6 +146,7 @@ var_dump($response);
 ```
 
 * **Send Document**
+
 _If you want to send document message, you need to upload the document or file first by using `$bot->upload()` function_
 
 ```php
