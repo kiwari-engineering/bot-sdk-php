@@ -45,12 +45,13 @@ class Kiwari
         $this->decodedMessage = json_decode($rawData, true);
 
         if ($this->enableLog) {
-            $tmpPath = sys_get_temp_dir() . '/kiwari-bot';
+            $tmpPath = dirname(__DIR__) . DIRECTORY_SEPARATOR . 'logs';
             if (!file_exists($tmpPath)) {
                 mkdir($tmpPath);
             }
             $tmpFile = $tmpPath . DIRECTORY_SEPARATOR . 'kiwari-bot.log';
-            file_put_contents($tmpFile, $rawData . "\n", FILE_APPEND);   
+            file_put_contents($tmpFile, '[' . date('Y-m-d H:i:s') . '] ' . $rawData . "\n", FILE_APPEND);   
+            echo $tmpPath;
         }
     }
 
