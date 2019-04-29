@@ -26,7 +26,6 @@ $message = $bot->getMessage();
 
 switch ($message['text']) {
     case '/help':
-        # code...
         $res2 = $bot->sendButton($room['qiscus_room_id'], 'Ini adalah contoh teksnya ya atau bisa jadi deskripsinya', [
             \Kiwari\Model\Button::create()
                 ->setLabel('Google')

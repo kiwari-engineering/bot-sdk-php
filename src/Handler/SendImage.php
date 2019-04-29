@@ -15,7 +15,6 @@ class SendImage
             'access_token' => $accessToken,
             'type' => 'file_attachment',
             'topic_id' => $roomId,
-            "message" => "[file]https://i.ytimg.com/vi/4x2ccZbHHwc/maxresdefault.jpg[/file]",
             'payload' => json_encode(
                 $image
             )

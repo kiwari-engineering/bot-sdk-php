@@ -66,7 +66,7 @@ class Card implements \JsonSerializable
         return $this->url;
     }
 
-    public function setDescription($description = [])
+    public function setDescription()
     {
         $this->description = $description;
         return $this;
