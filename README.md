@@ -30,9 +30,15 @@ $bot->enableLog(true); // you can enable log, the log file is inside your tmp
 
 //now you need to run the bot
 $bot->run();
+```
+
+* After you init Kiwari Bot, you can get `message`, `chatroom`, `sender`, and `myaccount`
+
+```php
+<?php
 
 //and now you can get the incomming data by using :
-$bot->getSender();
+$sender = $bot->getSender();
 /**
  * to get the sender
  * example data for method : $bot->getSender()
@@ -46,7 +52,7 @@ $bot->getSender();
  * }
  */
 
-$bot->getMyAccount();
+$myAccount = $bot->getMyAccount();
 /**
  * to get the my account or the bot
  * example data for method : $bot->getMyAccount()
@@ -59,7 +65,7 @@ $bot->getMyAccount();
  * }
  */
 
-$bot->getChatRoom();
+$room = $bot->getChatRoom();
 /**
  * to get chatroom
  * example data for method : $bot->getChatRoom()
@@ -98,7 +104,7 @@ $bot->getChatRoom();
  * }
  */
 
-$bot->getMessage();
+$message = $bot->getMessage();
 /**
  * to get the message
  * example data for method : $bot->getMessage()
@@ -109,7 +115,56 @@ $bot->getMessage();
  *     "type": "text"
  * }
  */
+```
 
+* Now you can send the message into the opponent user by call the method that provided like below
+
+* **Send Message Text**
+
+```php
+<?php
+
+$response = $bot->sendText($room['qiscus_room_id'], 'Hello, this is from Kiwari Bot SDK PHP');
+
+var_dump($response); //you can see the response if you need to debug or something to handle in your bot
+```
+
+* **Send Button**
+
+_More example, please see the test [here](tests/Model/ButtonTest.php)_
+
+```php
+<?php
+
+$response = $bot->sendButton($room['qiscus_room_id'], 'This is message Example', [
+    \Kiwari\Model\Button::create()
+        ->setLabel('Google')
+        ->setUrl('https://google.com'),
+    \Kiwari\Model\Button::create()
+        ->setLabel('Facebook')
+        ->setUrl('https://facebook.com'),
+    \Kiwari\Model\Button::create()
+        ->setLabel('Twitter')
+        ->setUrl('https://twitter.com')
+]);
+
+var_dump($response);
+```
+
+* **Send Document**
+
+_If you want to send document message, you need to upload the document or file first by using `$bot->upload()` function_
+
+```php
+<?php
+
+$path = '/Users/andhikayuana/Downloads/wav_wav_wavv.mp3';
+$upload = $bot->upload($path);
+var_dump($upload->body->data->url); // you can get the file url here
+
+//now you can send the document like below
+$response = $bot->sendDocument($room['qiscus_room_id'], $upload->body->data->url);
+var_dump($response);
 ```
 
 ## Example

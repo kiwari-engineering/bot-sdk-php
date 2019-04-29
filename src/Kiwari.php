@@ -51,14 +51,18 @@ class Kiwari
         $rawData = file_get_contents('php://input');
 
         $this->decodedMessage = json_decode($rawData, true);
+        $this->writeLog($rawData);
+    }
 
+    private function writeLog($rawData, $logFilename = 'kiwari-bot')
+    {
         if ($this->enableLog) {
-            $tmpPath = sys_get_temp_dir() . '/kiwari-bot';
+            $tmpPath = dirname(__DIR__) . DIRECTORY_SEPARATOR . 'logs';
             if (!file_exists($tmpPath)) {
                 mkdir($tmpPath);
             }
-            $tmpFile = $tmpPath . DIRECTORY_SEPARATOR . 'kiwari-bot.log';
-            file_put_contents($tmpFile, $rawData . "\n", FILE_APPEND);   
+            $tmpFile = $tmpPath . DIRECTORY_SEPARATOR . $logFilename . '.log';
+            file_put_contents($tmpFile, '[' . date('Y-m-d H:i:s') . '] ' . $rawData . "\n", FILE_APPEND);
         }
     }
 
@@ -88,7 +92,11 @@ class Kiwari
             throw new InvalidArgumentException("ROOM_ID can't be 0 [zero]");
         }
 
-        return SendButton::request($this->getAccessToken(), $roomId, $text, $btns);
+        $response = SendButton::request($this->getAccessToken(), $roomId, $text, $btns);
+        
+        $this->writeLog(json_encode($response), 'send-button');
+        
+        return $response;
     }
 
     public function sendCard(int $roomId, $text, $card, array $btns = [])
@@ -124,7 +132,11 @@ class Kiwari
             throw new InvalidArgumentException("ROOM_ID can't be 0 [zero]");
         }
 
-        return SendDocument::request($this->getAccessToken(), $roomId, $fileUrl, $caption);
+        $response =  SendDocument::request($this->getAccessToken(), $roomId, $fileUrl, $caption);
+
+        $this->writeLog(json_encode($response), 'send-button');
+
+        return $response;
     }
 
     public function sendImage(int $roomId, $payload)
@@ -160,11 +172,19 @@ class Kiwari
             throw new InvalidArgumentException("ROOM_ID can't be 0 [zero]");
         }
 
-        return SendText::request($this->getAccessToken(), $roomId, $message);
+        $response = SendText::request($this->getAccessToken(), $roomId, $message);
+
+        $this->writeLog(json_encode($response), 'send-text');
+
+        return $response;
     }
 
     public function upload($filePath)
     {
-        return Uploader::upload($this->getAccessToken(), $filePath);
+        $response = Uploader::upload($this->getAccessToken(), $filePath);
+
+        $this->writeLog(json_encode($response), 'upload');
+
+        return $response;
     }
 }
