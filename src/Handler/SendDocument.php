@@ -19,10 +19,6 @@ class SendDocument
             'payload' => json_encode(
                 $document
             )
-            // 'payload' => json_encode([
-            //     'url' => $fileUrl,
-            //     'caption' => $caption
-            // ])
         ]));
     }
     

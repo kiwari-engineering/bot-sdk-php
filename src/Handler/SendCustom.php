@@ -18,10 +18,6 @@ class SendCustom
             'payload' => json_encode(
                 $custom
             )
-            // 'payload' => json_encode([
-            //     "type" => "promo", // sub type of custom payload
-            //     "content" => ["a" => 1] // can be anything => object, array, string, number in JSON
-            // ])
         ]));
     }
 }

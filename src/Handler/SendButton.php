@@ -19,29 +19,6 @@ class SendButton
                 "text" => $text,
                 "buttons" => $btns
             ])
-            // 'payload' =>  json_encode([
-            //     "text"=> "jangan dipencet ya... ini cuma testing",
-            //     "buttons"=> [
-            //         [
-            //             "label"=> "button1",
-            //             "type"=> "link",
-            //             "payload"=> [
-            //                 "url"=> "https://www.google.com",
-            //                 "method"=> "get",
-            //                 "payload"=> null
-            //             ]
-            //         ],
-            //         [
-            //             "label"=> "button2",
-            //             "type"=> "postback",
-            //             "payload"=> [
-            //                 "url"=> "https://www.yahoo.com",
-            //                 "method"=> "get",
-            //                 "payload"=> null
-            //             ]
-            //         ]
-            //     ]
-            // ])
         ]));
     }
 }

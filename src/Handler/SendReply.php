@@ -15,13 +15,9 @@ class SendReply
             'access_token' => $accessToken,
             'type' => 'reply',
             'topic_id' => $roomId,
-            // 'payload' => json_encode(
-            //     $reply
-            // )
-            'payload' => json_encode([
-                "text" => "ini comment",
-                "replied_comment_id" => 20900820
-            ])
+            'payload' => json_encode(
+                $reply
+            )
         ]));
     }
 }

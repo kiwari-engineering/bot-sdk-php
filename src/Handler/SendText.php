@@ -19,7 +19,3 @@ class SendText
         ]));
     }
 }
-
-
-// # text
-// null

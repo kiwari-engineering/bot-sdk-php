@@ -199,11 +199,9 @@ $custom = Custom::create()
 // $res = $bot->sendButton(829055, $text, [$btn, $btn2]);
 // $res = $bot->sendCard(829055,$text, $card);
 // $res = $bot->sendCarousel(829055, $carousel);
-$res = $bot->sendCustom(829055, $custom);
+// $res = $bot->sendCustom(829055, $custom);
 // $res = $bot->sendDocument(829055, $file);
 // $res = $bot->sendImage(829055, $file);
 // $res = $bot->sendLocation(829055, $location);
 // $res = $bot->sendReply(829055, $reply);
 // $res = $bot->sendText(829055, $text);
-
-// $bot->sendButton($roomId, 'teksnya', [$btn. $btn1])

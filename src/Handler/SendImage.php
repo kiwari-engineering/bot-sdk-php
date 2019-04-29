@@ -19,10 +19,6 @@ class SendImage
             'payload' => json_encode(
                 $image
             )
-            // 'payload' => json_encode([
-            //     "url" => "https://i.ytimg.com/vi/4x2ccZbHHwc/maxresdefault.jpg",
-            //     "caption" => "Ini gambar siapa?",
-            //   ])
         ]));
     }
 }
