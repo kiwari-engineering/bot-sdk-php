@@ -120,6 +120,8 @@ $message = $bot->getMessage();
 * **Send Message Text**
 
 ```php
+<?php
+
 $response = $bot->sendText($room['qiscus_room_id'], 'Hello, this is from Kiwari Bot SDK PHP');
 
 var_dump($response); //you can see the response if you need to debug or something to handle in your bot
@@ -130,6 +132,8 @@ var_dump($response); //you can see the response if you need to debug or somethin
 _More example, please see the test [here](tests/Model/ButtonTest.php)_
 
 ```php
+<?php
+
 $response = $bot->sendButton($room['qiscus_room_id'], 'This is message Example', [
     \Kiwari\Model\Button::create()
         ->setLabel('Google')
@@ -150,6 +154,8 @@ var_dump($response);
 _If you want to send document message, you need to upload the document or file first by using `$bot->upload()` function_
 
 ```php
+<?php
+
 $path = '/Users/andhikayuana/Downloads/wav_wav_wavv.mp3';
 $upload = $bot->upload($path);
 var_dump($upload->body->data->url); // you can get the file url here
