@@ -35,6 +35,8 @@ $bot->run();
 * After you init Kiwari Bot, you can get `message`, `chatroom`, `sender`, and `myaccount`
 
 ```php
+<?php
+
 //and now you can get the incomming data by using :
 $sender = $bot->getSender();
 /**
