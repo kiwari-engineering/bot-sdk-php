@@ -6,10 +6,25 @@ use InvalidArgumentException;
 
 class Card implements \JsonSerializable
 {
+    private $text;
     private $image;
     private $title;    
     private $description;
     private $url;
+    
+    public function setText($text)
+    {
+        if ($text == null) {
+            $text = "text";
+        }
+        $this->text = $text;
+        return $this;
+    }
+
+    public function getText()
+    {
+        return $this->text;
+    }
 
     public function setImage($image)
     {

@@ -91,13 +91,13 @@ class Kiwari
         return SendButton::request($this->getAccessToken(), $roomId, $text, $btns);
     }
 
-    public function sendCard(int $roomId, $text, $card, $btn)
+    public function sendCard(int $roomId, $text, $card, array $btns = [])
     {
         if ($roomId < 1) {
             throw new InvalidArgumentException("ROOM_ID can't be 0 [zero]");
         }
 
-        return SendCard::request($this->getAccessToken(), $roomId, $text, $card, $btn);
+        return SendCard::request($this->getAccessToken(), $roomId, $text, $card, $btns);
     }
 
     public function sendCarousel(int $roomId, $payload)

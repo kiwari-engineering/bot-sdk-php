@@ -8,19 +8,21 @@ use Kiwari\Util\Url;
 
 class SendCard
 {
-    public static function request($accessToken, int $roomId, $text, $card, $btn)
+    public static function request($accessToken, int $roomId, $text, $card , array $btns = [])
     {
+        // $tempArray = json_decode($card, true);
+        // $tempArray = array_push($card, ['buttons' => @btns]);
         return Request::post(Url::POST_MESSAGE, [
             'Accept' => 'application/json'
         ], Body::form([
             'access_token' => $accessToken,
             'type' => 'card',
             'topic_id' => $roomId,
-            'payload' => json_encode([
-                "text" => $text,
-                $card,
-                "buttons" => $btn
-            ])
+            'payload' => 
+            // json_encode(
+                $card
+                // 'buttons' => $btns
+            // )
             // 'payload' => json_encode([
             //     "text" => "Pilih sesuatu ? hmm...",
             //     "image" => "https://content.halocdn.com/media/Default/games/halo-5-guardians/page/h5-guardians-facebook-1200x630-ba103624b3f34af79fe8cb2d340dce3f.jpg",
