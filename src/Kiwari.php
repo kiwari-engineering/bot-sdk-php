@@ -99,22 +99,22 @@ class Kiwari
         return $response;
     }
 
-    public function sendCard(int $roomId, $text, $card, array $btns = [])
+    public function sendCard(int $roomId, $text, $card)
     {
         if ($roomId < 1) {
             throw new InvalidArgumentException("ROOM_ID can't be 0 [zero]");
         }
 
-        return SendCard::request($this->getAccessToken(), $roomId, $text, $card, $btns);
+        return SendCard::request($this->getAccessToken(), $roomId, $text, $card);
     }
 
-    public function sendCarousel(int $roomId, $payload)
+    public function sendCarousel(int $roomId, $carousel)
     {
         if ($roomId < 1) {
             throw new InvalidArgumentException("ROOM_ID can't be 0 [zero]");
         }
 
-        return SendCarousel::request($this->getAccessToken(), $roomId, $payload);
+        return SendCarousel::request($this->getAccessToken(), $roomId, $carousel);
     }
 
     public function sendCustom(int $roomId, $payload)
@@ -126,13 +126,13 @@ class Kiwari
         return SendCustom::request($this->getAccessToken(), $roomId, $payload);
     }
 
-    public function sendDocument(int $roomId, $fileUrl, $caption = null)
+    public function sendDocument(int $roomId, $document)
     {
         if ($roomId < 1) {
             throw new InvalidArgumentException("ROOM_ID can't be 0 [zero]");
         }
 
-        $response =  SendDocument::request($this->getAccessToken(), $roomId, $fileUrl, $caption);
+        $response =  SendDocument::request($this->getAccessToken(), $roomId, $document);
 
         $this->writeLog(json_encode($response), 'send-button');
 

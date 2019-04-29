@@ -7,22 +7,22 @@ use Kiwari\Util\Url;
 
 class SendImage
 {
-    public static function request($accessToken, int $roomId)
+    public static function request($accessToken, int $roomId, $image)
     {
         return Request::post(Url::POST_MESSAGE, [
             'Accept' => 'application/json'
         ], Body::form([
             'access_token' => $accessToken,
-            'type' => 'image',
+            'type' => 'file_attachment',
             'topic_id' => $roomId,
-            'payload' => json_encode([
-                "url" => "https://i.ytimg.com/vi/4x2ccZbHHwc/maxresdefault.jpg",
-                "caption" => "Ini gambar siapa?",
-                "file_name" => "Nama file", 
-                "size" => 0,
-                "pages" => 1,
-                "encryption_key" => "ashasgewfrsasfasra"
-              ])
+            "message" => "[file]https://i.ytimg.com/vi/4x2ccZbHHwc/maxresdefault.jpg[/file]",
+            'payload' => json_encode(
+                $image
+            )
+            // 'payload' => json_encode([
+            //     "url" => "https://i.ytimg.com/vi/4x2ccZbHHwc/maxresdefault.jpg",
+            //     "caption" => "Ini gambar siapa?",
+            //   ])
         ]));
     }
 }

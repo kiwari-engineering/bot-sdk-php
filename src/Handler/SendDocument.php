@@ -8,7 +8,7 @@ use Kiwari\Util\Url;
 
 class SendDocument
 {
-    public static function request($accessToken, $roomId, $fileUrl, $caption = null)
+    public static function request($accessToken, $roomId, $document)
     {
         return Request::post(Url::POST_MESSAGE, [
             'Accept' => 'application/json'
@@ -16,10 +16,13 @@ class SendDocument
             'access_token' => $accessToken,
             'type' => 'file_attachment',
             'topic_id' => $roomId,
-            'payload' => json_encode([
-                'url' => $fileUrl,
-                'caption' => $caption
-            ])
+            'payload' => json_encode(
+                $document
+            )
+            // 'payload' => json_encode([
+            //     'url' => $fileUrl,
+            //     'caption' => $caption
+            // ])
         ]));
     }
     

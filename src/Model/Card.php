@@ -11,11 +11,12 @@ class Card implements \JsonSerializable
     private $title;    
     private $description;
     private $url;
+    private $buttons;
     
     public function setText($text)
     {
         if ($text == null) {
-            $text = "text";
+            throw new InvalidArgumentException("text is required");
         }
         $this->text = $text;
         return $this;
@@ -74,6 +75,17 @@ class Card implements \JsonSerializable
     public function getDescription()
     {
         return $this->description;
+    }
+
+    public function setButtons($buttons)
+    {
+        $this->buttons = $buttons;
+        return $this;
+    }
+
+    public function getButtons()
+    {
+        return $this->buttons;
     }
 
     public static function create()

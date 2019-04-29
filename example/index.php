@@ -4,7 +4,12 @@ require '..' . DIRECTORY_SEPARATOR . 'vendor/autoload.php';
 use Kiwari\Model\Button;
 use Kiwari\Model\Card;
 use Kiwari\Model\Carousel;
-
+use Kiwari\Model\Custom;
+use Kiwari\Model\Document;
+use Kiwari\Model\File;
+use Kiwari\Model\Location;
+use Kiwari\Model\Reply;
+use Kiwari\Model\Text;
 
 
 
@@ -16,7 +21,7 @@ $bot->enableLog(true);
 $bot->run();
 
 $sender = $bot->getSender();
-$room = $bot->getChatRoom();
+// $room = $bot->getChatRoom();
 $message = $bot->getMessage();
 
 // $path = '/Users/andhikayuana/Downloads/wav_wav_wavv.mp3';
@@ -49,29 +54,62 @@ $btn2 = Button::create()
             ->setMethod(Button::METHOD_GET)
             ->setType(Button::TYPE_LINK)
             ->setPayload($payload2);
+$buttons = [$btn,$btn2];
 
 //     "text" => "Pilih sesuatu ? hmm...",
-$image = "https://content.halocdn.com/media/Default/games/halo-5-guardians/page/h5-guardians-facebook-1200x630-ba103624b3f34af79fe8cb2d340dce3f.jpg";
+$imageUrl = "https://content.halocdn.com/media/Default/games/halo-5-guardians/page/h5-guardians-facebook-1200x630-ba103624b3f34af79fe8cb2d340dce3f.jpg";
 $title = "May Spaghetti be with Jarjit";
 //     "description" => "Oleh sippnshop\n96% (666 feedback)\nRp 49.000.00,-\nBUY 2 GET 1 FREE!!!",
 $url = "http://www.yahoo.com";
 
 $card = Card::create()
             ->setText($title)
-            ->setImage($image)
+            ->setImage($imageUrl)
             ->setTitle($title)
             ->setDescription($text)
-            ->setUrl($url);
+            ->setUrl($url)
+            ->setButtons($buttons);
+$default_action = [
+    "type" => "postback",
+    "postback_text" => "Load more",
+    "payload" => [
+        "url" => "http://www.yahoo.com",
+        "method" => "get",
+        "payload" => null]
+    ];
+$carousel = Carousel::create()
+    ->setCards([$card, $card]);
 
+$size = 100;
 
+$file = File::create()
+    ->setUrl($imageUrl)
+    ->setCaption($text);
+
+$name = "Mirota Kampus 2 Simanjuntak";
+$address = "Jalan C Simanjuntak No.70 ; Terban ; Gondokusuman ; Kota Yogyakarta ; Daerah Istimewa Yogyakarta 55223" ; 
+$latitude = -7.776235;
+$longitude = 110.374928;
+$map_url = "http://maps.google.com/?q=-7.776235 ;110.374928" ; 
+$encrypted_latitude = "asgahsgtwehgayw" ; 
+$encrypted_longitude = "ashjshtweyghgas";
+
+$location = Location::create()
+    ->setName($name)
+    ->setAddress($address)
+    ->setLatitude($latitude)
+    ->setLongitude($longitude)
+    ->setMapUrl($map_url)
+    ->setEncryptedLatitude($encrypted_latitude)
+    ->setEncryptedLongitude($encrypted_longitude);
 
 // $res = $bot->sendButton($room['qiscus_room_id'], $text, [$btn, $btn2]);
-$res = $bot->sendCard($room['qiscus_room_id'],$text, $card, [$btn, $btn2]);
-// $res = $bot->sendCarousel($room['qiscus_room_id']);
+// $res = $bot->sendCard(829055,$text, $card);
+// $res = $bot->sendCarousel(829055, $carousel);
 // $res = $bot->sendCustom($room['qiscus_room_id']);
-// $res = $bot->sendDocument($room['qiscus_room_id'], $fileUrl);
-// $res = $bot->sendImage($room['qiscus_room_id']);
-// $res = $bot->sendLocation($room['qiscus_room_id']);
+// $res = $bot->sendDocument(829055, $file);
+// $res = $bot->sendImage(829055, $file);
+$res = $bot->sendLocation(829055, $location);
 // $res = $bot->sendReply($room['qiscus_room_id']);
 // $res = $bot->sendText($room['qiscus_room_ids'], $text);
 

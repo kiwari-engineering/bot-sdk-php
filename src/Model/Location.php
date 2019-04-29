@@ -6,74 +6,104 @@ use InvalidArgumentException;
 
 class Location implements \JsonSerializable
 {
-    const TYPE_POSTBACK = 'postback';
-    const TYPE_LINK = 'link';
+    private $name;
+    private $address;
+    private $latitude;
+    private $longitude;
+    private $map_url;
+    private $encrypted_latitude;
+    private $encrypted_longitude;
 
-    const METHOD_GET = 'get';
-    const METHOD_POST = 'post';
-
-    private $type = self::TYPE_LINK;
-    private $method = self::METHOD_GET;
-    private $label;
-    private $payload;
-    private $url;
-
-    public function setLabel($label)
+    public function setName($name)
     {
-        if ($label == null) {
-            throw new InvalidArgumentException("label is required");
+        if ($name == null) {
+            throw new InvalidArgumentException("name is required");
         }
-        $this->label = $label;
+        $this->name = $name;
         return $this;
     }
 
-    public function getLabel()
+    public function getName()
     {
-        return $this->label;
+        return $this->name;
     }
 
-    public function setType($type)
+    public function setAddress($address)
     {
-        $this->type = $type;
+        if ($address == null) {
+            throw new InvalidArgumentException("address is required");
+        }
+        $this->address = $address;
         return $this;
     }
 
-    public function getType()
+    public function getAddress()
     {
-        return $this->type;
+        return $this->address;
     }
 
-    public function setMethod($method)
+    public function setLatitude($latitude)
     {
-        $this->method = $method;
+        if ($latitude == null) {
+            throw new InvalidArgumentException("latitude is required");
+        }
+        $this->latitude = $latitude;
         return $this;
     }
 
-    public function getMethod()
+    public function getLatitude()
     {
-        return $this->method;
+        return $this->latitude;
     }
 
-    public function setUrl($url)
+    public function setLongitude($longitude)
     {
-        $this->url = $url;
+        if ($longitude == null) {
+            throw new InvalidArgumentException("longitude is required");
+        }
+        $this->longitude = $longitude;
         return $this;
     }
 
-    public function getUrl()
+    public function getLongitude()
     {
-        return $this->url;
+        return $this->longitude;
     }
 
-    public function setPayload($payload = [])
+    public function setMapUrl($map_url)
     {
-        $this->payload = $payload;
+        if ($map_url == null) {
+            throw new InvalidArgumentException("map_url is required");
+        }
+        $this->map_url = $map_url;
         return $this;
     }
 
-    public function getPayload()
+    public function getMapUrl()
     {
-        return $this->payload;
+        return $this->map_url;
+    }
+
+    public function setEncryptedLatitude($encrypted_latitude)
+    {
+        $this->encrypted_latitude = $encrypted_latitude;
+        return $this;
+    }
+
+    public function getEncryptedLatitude()
+    {
+        return $this->encrypted_latitude;
+    }
+
+    public function setEncryptedLongitude($encrypted_longitude)
+    {
+        $this->encrypted_longitude = $encrypted_longitude;
+        return $this;
+    }
+
+    public function getEncryptedLongitude()
+    {
+        return $this->encrypted_longitude;
     }
 
     public static function create()

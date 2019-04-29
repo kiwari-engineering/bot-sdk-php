@@ -6,12 +6,11 @@ use Unirest\Request;
 use Unirest\Request\Body;
 use Kiwari\Util\Url;
 
+
 class SendCard
 {
-    public static function request($accessToken, int $roomId, $text, $card , array $btns = [])
+    public static function request($accessToken, int $roomId, $text, $card)
     {
-        // $tempArray = json_decode($card, true);
-        // $tempArray = array_push($card, ['buttons' => @btns]);
         return Request::post(Url::POST_MESSAGE, [
             'Accept' => 'application/json'
         ], Body::form([
@@ -19,10 +18,9 @@ class SendCard
             'type' => 'card',
             'topic_id' => $roomId,
             'payload' => 
-            // json_encode(
+            json_encode(
                 $card
-                // 'buttons' => $btns
-            // )
+            )
             // 'payload' => json_encode([
             //     "text" => "Pilih sesuatu ? hmm...",
             //     "image" => "https://content.halocdn.com/media/Default/games/halo-5-guardians/page/h5-guardians-facebook-1200x630-ba103624b3f34af79fe8cb2d340dce3f.jpg",

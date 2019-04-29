@@ -2,6 +2,9 @@
 
 use PHPUnit\Framework\TestCase;
 use Kiwari\Model\Card;
+use Kiwari\Model\Button;
+use Kiwari\Model\Variables;
+
 
 class CardTest extends TestCase
 {
@@ -15,26 +18,36 @@ class CardTest extends TestCase
 
     public function testCreateOneCard(): void
     {
+        $fileUrl = 'https://d1edrlpyc25xu0.cloudfront.net/kiwari-prod/raw/upload/iaczqmgLLJ/wav_wav_wavv.mp3';
+        $text = 'halo bro, ini dari kiwari bot sdk php';
+
+        $label = 'Goku';
+        $payload =  [
+                    "url"=> "https://www.google.com/search?q=goku",
+                    "method"=> "get",
+                    "payload"=> null
+                    ];
+        $btn2 = Button::create()
+        ->setLabel("hmmmm")
+        ->setMethod(Button::METHOD_GET)
+        ->setType(Button::TYPE_LINK)
+        ->setPayload($payload);
+
+        $buttons = [$btn2,$btn2];
         $image = "https://content.halocdn.com/media/Default/games/halo-5-guardians/page/h5-guardians-facebook-1200x630-ba103624b3f34af79fe8cb2d340dce3f.jpg";
         $title = "May Spaghetti be with Jarjit";
-        //     "description" => "Oleh sippnshop\n96% (666 feedback)\nRp 49.000.00,-\nBUY 2 GET 1 FREE!!!",
         $url = "http://www.yahoo.com";
-        $card = Card::create()
-            ->setText($title)
-            ->setImage($image)
-            ->setTitle($title)
-            ->setDescription($title)
-            ->setUrl($url);
-        $coba = "--------------------";
-        // $tempArray = json_decode($card, true);
-        $axxx = [1,2,3,4];
-        $tempArray = array_push($axxx, ['a'=>'wkwkwkwkw']);
-        var_dump($axxx);
 
-            var_dump(json_encode([$card
-        ,'a'=>123]));
-            var_dump($coba);
-            $this->assertEquals($card->getImage(), $image);
+        $card = Card::create()
+        ->setText($title)
+        ->setImage($image)
+        ->setTitle($title)
+        ->setDescription($text)
+        ->setUrl($url)
+        ->setButtons($buttons);
+
+        var_dump(json_encode($card));
+        $this->assertEquals($card->getImage(), $image);
     }
 
     // public function testGivenLabelThenGetLabelAndDefaultMethodDefaultType(): void
