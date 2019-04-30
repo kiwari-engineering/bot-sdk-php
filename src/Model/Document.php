@@ -8,10 +8,9 @@ class Document implements \JsonSerializable
 {
     private $url;
     private $caption;
-    private $file_name;
-    private $size;
-    private $pages;
-    private $encription_key;
+    // private $file_name;
+    // private $size;
+    // private $pages;
 
     public function setUrl($url)
     {

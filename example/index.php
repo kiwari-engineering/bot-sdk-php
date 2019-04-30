@@ -7,7 +7,6 @@ use Kiwari\Model\Card;
 use Kiwari\Model\Carousel;
 use Kiwari\Model\Custom;
 use Kiwari\Model\Document;
-use Kiwari\Model\File;
 use Kiwari\Model\Location;
 use Kiwari\Model\Reply;
 
