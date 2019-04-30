@@ -42,67 +42,35 @@ switch ($message['text']) {
                 Button::create()
                     ->setLabel('Contoh Button')
                     ->setType(Button::TYPE_POSTBACK)
-                    ->setPayload([
-                        // 'request' => TYPE_BUTTON,
-                        'method' => 'get', # or use post
-                        'url' => 'https://google.com' # url
-                    ]),
+                    ->setUrl('https://google.com'),
                 Button::create()
                     ->setLabel('Contoh Card')
                     ->setType(Button::TYPE_POSTBACK)
-                    ->setPayload([
-                        // 'request' => TYPE_CARD
-                        'method' => 'get', # or use post
-                        'url' => 'https://google.com' # url
-                    ]),
+                    ->setUrl('https://google.com'),
                 Button::create()
                     ->setLabel('Contoh Custom')
                     ->setType(Button::TYPE_POSTBACK)
-                    ->setPayload([
-                        // 'request' => TYPE_CUSTOM
-                        'method' => 'get', # or use post
-                        'url' => 'https://google.com' # url
-                    ]),
+                    ->setUrl('https://google.com'),
                 Button::create()
                     ->setLabel('Contoh Image File')
                     ->setType(Button::TYPE_POSTBACK)
-                    ->setPayload([
-                        // 'request' => TYPE_IMAGE
-                        'method' => 'get', # or use post
-                        'url' => 'https://google.com' # url
-                    ]),
+                    ->setUrl('https://google.com'),
                 Button::create()
                     ->setLabel('Contoh Audio File')
                     ->setType(Button::TYPE_POSTBACK)
-                    ->setPayload([
-                        // 'request' => TYPE_AUDIO
-                        'method' => 'get', # or use post
-                        'url' => 'https://google.com' # url
-                    ]),
+                    ->setUrl('https://google.com'),
                 Button::create()
                     ->setLabel('Contoh Location')
                     ->setType(Button::TYPE_POSTBACK)
-                    ->setPayload([
-                        // 'request' => TYPE_LOCATION
-                        'method' => 'get', # or use post
-                        'url' => 'https://google.com' # url
-                    ]),
+                    ->setUrl('https://google.com'),
                 Button::create()
                     ->setLabel('Contoh Reply')
                     ->setType(Button::TYPE_POSTBACK)
-                    ->setPayload([
-                        // 'request' => TYPE_REPLY
-                        'method' => 'get', # or use post
-                        'url' => 'https://google.com' # url
-                    ]),
+                    ->setUrl('https://google.com'),
                 Button::create()
                     ->setLabel('Contoh Text')
                     ->setType(Button::TYPE_POSTBACK)
-                    ->setPayload([
-                        // 'request' => TYPE_REPLY
-                        'method' => 'get', # or use post
-                        'url' => 'https://google.com' # url
-                    ]),
+                    ->setUrl('https://google.com'),
             ]);
 
         break;
@@ -112,7 +80,16 @@ switch ($message['text']) {
         $bot->sendButton($room['qiscus_room_id'], 'contoh button', [
             Button::create()
                 ->setLabel('Jarjit Singh')
-                ->setUrl('https://www.google.com/search?safe=off&source=hp&ei=rgbIXL6ZF8GEvQS1z5y4BQ&q=jarjit+singh&btnK=Google+Search&oq=jarjit+singh&gs_l=psy-ab.3..0l3j0i10l7.1892.2423..2633...0.0..0.110.518.5j1......0....1..gws-wiz.9PGvoF92CXU')
+                ->setUrl('https://www.google.com/search?safe=off&source=hp&ei=rgbIXL6ZF8GEvQS1z5y4BQ&q=jarjit+singh&btnK=Google+Search&oq=jarjit+singh&gs_l=psy-ab.3..0l3j0i10l7.1892.2423..2633...0.0..0.110.518.5j1......0....1..gws-wiz.9PGvoF92CXU'),
+            Button::create()
+                ->setLabel('Youtube')
+                ->setUrl('https://youtube.com'),
+            Button::create()
+                ->setLabel('Facebook')
+                ->setUrl('https://facebook.com'),
+            Button::create()
+                ->setLabel('Twitter')
+                ->setUrl('https://twitter.com')
         ]);
 
         break;
