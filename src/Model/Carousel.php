@@ -6,7 +6,7 @@ use InvalidArgumentException;
 
 class Carousel implements \JsonSerializable
 {
-    private $cards;
+    private $cards = [];
 
     public function setCards($cards)
     {

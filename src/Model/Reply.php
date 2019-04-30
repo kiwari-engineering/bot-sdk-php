@@ -6,10 +6,8 @@ use InvalidArgumentException;
 
 class Reply implements \JsonSerializable
 {
-    // "text" => "ini comment",
-    // "replied_comment_id" => 20900820
     private $text;
-    private $replied_comment_id;
+    private $repliedCommentId;
 
     public function setText($text)
     {
@@ -25,18 +23,18 @@ class Reply implements \JsonSerializable
         return $this->text;
     }
 
-    public function setRepliedCommentId($replied_comment_id)
+    public function setRepliedCommentId($repliedCommentId)
     {
-        if ($replied_comment_id == null) {
+        if ($repliedCommentId == null) {
             throw new InvalidArgumentException("replied_comment_id is required");
         }
-        $this->replied_comment_id = $replied_comment_id;
+        $this->repliedCommentId = $repliedCommentId;
         return $this;
     }
 
     public function getRepliedCommentId()
     {
-        return $this->replied_comment_id;
+        return $this->repliedCommentId;
     }
 
     public static function create()

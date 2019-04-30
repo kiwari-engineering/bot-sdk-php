@@ -1,6 +1,7 @@
 <?php
 
 require '..' . DIRECTORY_SEPARATOR . 'vendor/autoload.php';
+
 use Kiwari\Model\Button;
 use Kiwari\Model\Card;
 use Kiwari\Model\Carousel;
@@ -9,9 +10,6 @@ use Kiwari\Model\Document;
 use Kiwari\Model\File;
 use Kiwari\Model\Location;
 use Kiwari\Model\Reply;
-use Kiwari\Model\Text;
-
-
 
 $dotenv = Dotenv\Dotenv::create(__DIR__);
 $dotenv->load();
@@ -161,7 +159,7 @@ $carousel = Carousel::create()
 
 $size = 100;
 
-$file = File::create()
+$file = Document::create()
     ->setUrl($imageUrl)
     ->setCaption($text);
 
@@ -170,17 +168,13 @@ $address = "Jalan C Simanjuntak No.70 ; Terban ; Gondokusuman ; Kota Yogyakarta 
 $latitude = -7.776235;
 $longitude = 110.374928;
 $map_url = "http://maps.google.com/?q=-7.776235 ;110.374928" ; 
-$encrypted_latitude = "asgahsgtwehgayw" ; 
-$encrypted_longitude = "ashjshtweyghgas";
 
 $location = Location::create()
     ->setName($name)
     ->setAddress($address)
     ->setLatitude($latitude)
     ->setLongitude($longitude)
-    ->setMapUrl($map_url)
-    ->setEncryptedLatitude($encrypted_latitude)
-    ->setEncryptedLongitude($encrypted_longitude);
+    ->setMapUrl($map_url);
 
 $reply = Reply::create()
     ->setText($text)

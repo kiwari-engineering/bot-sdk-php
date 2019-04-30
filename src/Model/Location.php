@@ -10,9 +10,7 @@ class Location implements \JsonSerializable
     private $address;
     private $latitude;
     private $longitude;
-    private $map_url;
-    private $encrypted_latitude;
-    private $encrypted_longitude;
+    private $mapUrl;
 
     public function setName($name)
     {
@@ -70,40 +68,18 @@ class Location implements \JsonSerializable
         return $this->longitude;
     }
 
-    public function setMapUrl($map_url)
+    public function setMapUrl($mapUrl)
     {
-        if ($map_url == null) {
+        if ($mapUrl == null) {
             throw new InvalidArgumentException("map_url is required");
         }
-        $this->map_url = $map_url;
+        $this->mapUrl = $mapUrl;
         return $this;
     }
 
     public function getMapUrl()
     {
-        return $this->map_url;
-    }
-
-    public function setEncryptedLatitude($encrypted_latitude)
-    {
-        $this->encrypted_latitude = $encrypted_latitude;
-        return $this;
-    }
-
-    public function getEncryptedLatitude()
-    {
-        return $this->encrypted_latitude;
-    }
-
-    public function setEncryptedLongitude($encrypted_longitude)
-    {
-        $this->encrypted_longitude = $encrypted_longitude;
-        return $this;
-    }
-
-    public function getEncryptedLongitude()
-    {
-        return $this->encrypted_longitude;
+        return $this->mapUrl;
     }
 
     public static function create()

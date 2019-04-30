@@ -11,7 +11,7 @@ class Card implements \JsonSerializable
     private $title;    
     private $description;
     private $url;
-    private $buttons;
+    private $buttons = [];
     
     public function setText($text)
     {
