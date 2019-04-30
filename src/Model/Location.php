@@ -10,7 +10,7 @@ class Location implements \JsonSerializable
     private $address;
     private $latitude;
     private $longitude;
-    private $mapUrl;
+    private $map_url;
 
     public function setName($name)
     {
@@ -73,13 +73,13 @@ class Location implements \JsonSerializable
         if ($mapUrl == null) {
             throw new InvalidArgumentException("map_url is required");
         }
-        $this->mapUrl = $mapUrl;
+        $this->map_url = $mapUrl;
         return $this;
     }
 
     public function getMapUrl()
     {
-        return $this->mapUrl;
+        return $this->map_url;
     }
 
     public static function create()

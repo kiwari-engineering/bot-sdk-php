@@ -27,16 +27,16 @@ class Card implements \JsonSerializable
         return $this->text;
     }
 
-    public function setImage($image)
+    public function setImageUrl($imageUrl)
     {
-        if ($image == null) {
-            throw new InvalidArgumentException("image is required");
+        if ($imageUrl == null) {
+            throw new InvalidArgumentException("image_url is required");
         }
-        $this->image = $image;
+        $this->image = $imageUrl;
         return $this;
     }
 
-    public function getImage()
+    public function getImageUrl()
     {
         return $this->image;
     }

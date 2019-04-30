@@ -1,146 +1,73 @@
 <?php
 
 use PHPUnit\Framework\TestCase;
-// use Kiwari\Model\Card;
-// use Kiwari\Model\Button;
+use Kiwari\Model\Card;
+use Kiwari\Model\Button;
 
 class CardTest extends TestCase
 {
-    public function testAnu(): void 
+    public function testGivenNullTextThenError(): void 
     {
-        $this->assertEquals(1, 1);
+        $this->expectException(\InvalidArgumentException::class);
+
+        Card::create()->setText(null);
     }
-    // public function testGivenNullLabelThenShowError(): void
-    // {
-    //     $this->expectException(\InvalidArgumentException::class);
 
-    //     Card::create()
-    //         ->setLabel(null);
-    // }
+    public function testGivenNullImageUrlThenError(): void 
+    {
+        $this->expectException(\InvalidArgumentException::class);
 
-    // public function testCreateOneCard(): void
-    // {
-    //     $fileUrl = 'https://d1edrlpyc25xu0.cloudfront.net/kiwari-prod/raw/upload/iaczqmgLLJ/wav_wav_wavv.mp3';
-    //     $text = 'halo bro, ini dari kiwari bot sdk php';
+        Card::create()->setImageUrl(null);
+    }
 
-    //     $label = 'Goku';
-    //     $payload =  [
-    //                 "url"=> "https://www.google.com/search?q=goku",
-    //                 "method"=> "get",
-    //                 "payload"=> null
-    //                 ];
-    //     $btn2 = Button::create()
-    //     ->setLabel("hmmmm")
-    //     ->setMethod(Button::METHOD_GET)
-    //     ->setType(Button::TYPE_LINK)
-    //     ->setPayload($payload);
+    public function testGivenNullTitleThenError(): void 
+    {
+        $this->expectException(\InvalidArgumentException::class);
 
-    //     $buttons = [$btn2,$btn2];
-    //     $image = "https://content.halocdn.com/media/Default/games/halo-5-guardians/page/h5-guardians-facebook-1200x630-ba103624b3f34af79fe8cb2d340dce3f.jpg";
-    //     $title = "May Spaghetti be with Jarjit";
-    //     $url = "http://www.yahoo.com";
+        Card::create()->setTitle(null);
+    }
 
-    //     $card = Card::create()
-    //     ->setText($title)
-    //     ->setImage($image)
-    //     ->setTitle($title)
-    //     ->setDescription($text)
-    //     ->setUrl($url)
-    //     ->setButtons($buttons);
+    public function testGivenTextTitleImageUrlUrlDescButonsThenExpectJson(): void 
+    {
+        $text = 'Hello this is text';
+        $imageUrl = 'https://api.adorable.io/avatars/285/abott@adorable.png';
+        $title = 'Jarjit Singh';
+        $url = 'https://google.com';
+        $desc = 'lorem ipsum dolor sit amet';
 
-    //     var_dump(json_encode($card));
-    //     $this->assertEquals($card->getImage(), $image);
-    // }
+        $btn = Button::create()
+                    ->setLabel('google')
+                    ->setUrl($url);
 
-    // public function testGivenLabelThenGetLabelAndDefaultMethodDefaultType(): void
-    // {
-    //     $label = 'Hello World';
+        $btn2 = Button::create()
+                    ->setLabel('google')
+                    ->setUrl($url);
 
-    //     $btn = Card::create()
-    //                 ->setLabel($label);
+        $card = Card::create()
+            ->setText($text)
+            ->setImageUrl($imageUrl)
+            ->setTitle($title)
+            ->setUrl($url)
+            ->setDescription($desc)
+            ->setButtons([$btn, $btn2]);
         
-    //     $this->assertEquals($btn->getLabel(), $label);
-    //     $this->assertEquals($btn->getMethod(), Card::METHOD_GET);
-    //     $this->assertEquals($btn->getType(), Card::TYPE_LINK);
-    //     $this->assertEquals($btn->getUrl(), null);
-    //     $this->assertEquals($btn->getPayload(), null);
-    // }
+        $this->assertEquals($card->getText(), $text);
+        $this->assertEquals($card->getImageUrl(), $imageUrl);
+        $this->assertEquals($card->getTitle(), $title);
+        $this->assertEquals($card->getUrl(), $url);
+        $this->assertEquals($card->getDescription(), $desc);
+        $this->assertEquals($card->getButtons(), [$btn, $btn2]);
 
-    // public function testGivenLabelMethodPostTypePostBackPayload(): void
-    // {
-    //     $label = 'Order Here';
-    //     $payload = [
-    //         'product' => [
-    //             'id' => 1,
-    //             'name' => 'chair',
-    //             'price' => 400000,
-    //             'qty' => 10
-    //         ],
-    //         'payment' => 'BCA'
-    //     ];
-
-    //     $btn = Card::create()
-    //                 ->setLabel($label)
-    //                 ->setMethod(Card::METHOD_POST)
-    //                 ->setType(Card::TYPE_POSTBACK)
-    //                 ->setPayload($payload);
-    //     var_dump(json_encode($btn));
-        
-    //     $this->assertEquals($btn->getLabel(), $label);
-    //     $this->assertEquals($btn->getMethod(), Card::METHOD_POST);
-    //     $this->assertEquals($btn->getType(), Card::TYPE_POSTBACK);
-    //     $this->assertEquals($btn->getUrl(), null);
-    //     $this->assertEquals($btn->getPayload(), $payload);
-    // }
-
-    // public function testGivenAllPropsThenExpectJson(): void 
-    // {
-    //     $label = 'Order Now!';
-    //     $payload = [
-    //         'product' => [
-    //             'id' => 23,
-    //             'name' => 'yamaha psr 3000',
-    //             'price' => 10000000,
-    //             'qty' => 1
-    //         ],
-    //         'payment' => 'Mandiri'
-    //     ];
-
-    //     $btn = Card::create()
-    //                 ->setLabel($label)
-    //                 ->setMethod(Card::METHOD_POST)
-    //                 ->setType(Card::TYPE_POSTBACK)
-    //                 ->setPayload($payload);
-
-    //     $this->assertEquals($btn->getLabel(), $label);
-    //     $this->assertEquals($btn->getMethod(), Card::METHOD_POST);
-    //     $this->assertEquals($btn->getType(), Card::TYPE_POSTBACK);
-    //     $this->assertEquals($btn->getUrl(), null);
-    //     $this->assertEquals($btn->getPayload(), $payload);
-
-    //     $this->assertEquals(json_encode($btn), json_encode([
-    //         'type' => Card::TYPE_POSTBACK,
-    //         'method' => Card::METHOD_POST,
-    //         'label' => $label,
-    //         'payload' => $payload,
-    //         'url' => null
-    //     ]));
-    // }
-
-    // public function testGivenUrlThenShowDefaultWithLink(): void
-    // {
-    //     $label = 'Go to Facebook';
-    //     $url = 'https://www.facebook.com';
-
-    //     $btn = Card::create()
-    //                 ->setLabel($label)
-    //                 ->setUrl($url);
-
-    //     $this->assertEquals($btn->getLabel(), $label);
-    //     $this->assertEquals($btn->getMethod(), Card::METHOD_GET);
-    //     $this->assertEquals($btn->getType(), Card::TYPE_LINK);
-    //     $this->assertEquals($btn->getUrl(), $url);
-    //     $this->assertEquals($btn->getPayload(), null);
-    // }
-    
+        $this->assertEquals(json_encode($card), json_encode([
+            'text' => $text,
+            'image' => $imageUrl,
+            'title' => $title,
+            'description' => $desc,
+            'url' => $url,
+            'buttons' => [
+                $btn,
+                $btn2
+            ]
+        ]));
+    }
 }

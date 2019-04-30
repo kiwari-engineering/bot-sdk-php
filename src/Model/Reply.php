@@ -7,7 +7,7 @@ use InvalidArgumentException;
 class Reply implements \JsonSerializable
 {
     private $text;
-    private $repliedCommentId;
+    private $replied_comment_id;
 
     public function setText($text)
     {
@@ -28,13 +28,13 @@ class Reply implements \JsonSerializable
         if ($repliedCommentId == null) {
             throw new InvalidArgumentException("replied_comment_id is required");
         }
-        $this->repliedCommentId = $repliedCommentId;
+        $this->replied_comment_id = $repliedCommentId;
         return $this;
     }
 
     public function getRepliedCommentId()
     {
-        return $this->repliedCommentId;
+        return $this->replied_comment_id;
     }
 
     public static function create()
