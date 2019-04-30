@@ -117,20 +117,28 @@ switch ($message['text']) {
 
         break;
     case 'Contoh Card':
+        $bot->sendText($room['qiscus_room_id'], 'ini dari contoh card');
         break;
     case 'Contoh Carousel':
+        $bot->sendText($room['qiscus_room_id'], 'ini dari contoh carousel');
         break;
     case 'Contoh Custom':
+        $bot->sendText($room['qiscus_room_id'], 'ini dari contoh custom');
         break;
     case 'Contoh Image File':
+        $bot->sendText($room['qiscus_room_id'], 'ini dari contoh image file');
         break;
     case 'Contoh Audio File':
+        $bot->sendText($room['qiscus_room_id'], 'ini dari contoh audio file');
         break;
     case 'Contoh Location':
+        $bot->sendText($room['qiscus_room_id'], 'ini dari contoh location');
         break;
     case 'Contoh Reply':
+        $bot->sendText($room['qiscus_room_id'], 'ini dari contoh reply');
         break;
     case 'Contoh Text':
+        $bot->sendText($room['qiscus_room_id'], 'ini dari contoh text');
         break;
 
     default:

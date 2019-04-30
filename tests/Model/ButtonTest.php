@@ -79,11 +79,13 @@ class ButtonTest extends TestCase
         $this->assertEquals($btn->getPayload(), $payload);
 
         $this->assertEquals(json_encode($btn), json_encode([
-            'type' => Button::TYPE_POSTBACK,
-            'method' => Button::METHOD_POST,
             'label' => $label,
-            'payload' => $payload,
-            'url' => null
+            'type' => Button::TYPE_POSTBACK,
+            'payload' => [
+                'url' => null,
+                'method' => Button::METHOD_POST,
+                'payload' => $payload
+            ],
         ]));
     }
 

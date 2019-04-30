@@ -15,7 +15,7 @@ class Button implements \JsonSerializable
     private $type = self::TYPE_LINK;
     private $method = self::METHOD_GET;
     private $label;
-    private $payload;
+    private $payload = null;
     private $url;
 
     public function setLabel($label)
@@ -83,6 +83,14 @@ class Button implements \JsonSerializable
 
     public function jsonSerialize()
     {
-        return get_object_vars($this);
+        return get_object_vars((object) [
+            'label' => $this->label,
+            'type' => $this->type,
+            'payload' => [
+                'url' => $this->url,
+                'method' => $this->method,
+                'payload' => $this->payload
+            ]
+        ]);
     }
 }
