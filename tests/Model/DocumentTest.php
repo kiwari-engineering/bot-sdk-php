@@ -1,112 +1,33 @@
 <?php
 
 use PHPUnit\Framework\TestCase;
-// use Kiwari\Model\Document;
+use Kiwari\Model\Document;
 
 class DocumentTest extends TestCase
 {
-    public function testAnu(): void 
+    public function testGivenNullUrlThenError()
     {
-        $this->assertEquals(1, 1);
+        $this->expectException(\InvalidArgumentException::class);
+
+        Document::create()->setUrl(null);
+    }   
+
+    public function testGivenAllPropsThenExpecttJson()
+    {
+        $fileUrl = 'https://content.halocdn.com/media/Default/games/halo-5-guardians/page/h5-guardians-facebook-1200x630-ba103624b3f34af79fe8cb2d340dce3f.jpg';
+        $cap = 'hello world';
+
+        $file = Document::create()
+                    ->setUrl($fileUrl)
+                    ->setCaption($cap);
+
+        $this->assertEquals($file->getUrl(), $fileUrl);
+        $this->assertEquals($file->getCaption(), $cap);
+
+        $this->assertEquals(json_encode($file), json_encode([
+            'url' => $fileUrl,
+            'caption' => $cap
+        ]));
+
     }
-
-    // public function testGivenNullLabelThenShowError(): void
-    // {
-    //     $this->expectException(\InvalidArgumentException::class);
-
-    //     Document::create()
-    //         ->setLabel(null);
-    // }
-
-    // public function testGivenLabelThenGetLabelAndDefaultMethodDefaultType(): void
-    // {
-    //     $label = 'Hello World';
-
-    //     $btn = Document::create()
-    //                 ->setLabel($label);
-        
-    //     $this->assertEquals($btn->getLabel(), $label);
-    //     $this->assertEquals($btn->getMethod(), Document::METHOD_GET);
-    //     $this->assertEquals($btn->getType(), Document::TYPE_LINK);
-    //     $this->assertEquals($btn->getUrl(), null);
-    //     $this->assertEquals($btn->getPayload(), null);
-    // }
-
-    // public function testGivenLabelMethodPostTypePostBackPayload(): void
-    // {
-    //     $label = 'Order Here';
-    //     $payload = [
-    //         'product' => [
-    //             'id' => 1,
-    //             'name' => 'chair',
-    //             'price' => 400000,
-    //             'qty' => 10
-    //         ],
-    //         'payment' => 'BCA'
-    //     ];
-
-    //     $btn = Document::create()
-    //                 ->setLabel($label)
-    //                 ->setMethod(Document::METHOD_POST)
-    //                 ->setType(Document::TYPE_POSTBACK)
-    //                 ->setPayload($payload);
-    //     var_dump(json_encode($btn));
-        
-    //     $this->assertEquals($btn->getLabel(), $label);
-    //     $this->assertEquals($btn->getMethod(), Document::METHOD_POST);
-    //     $this->assertEquals($btn->getType(), Document::TYPE_POSTBACK);
-    //     $this->assertEquals($btn->getUrl(), null);
-    //     $this->assertEquals($btn->getPayload(), $payload);
-    // }
-
-    // public function testGivenAllPropsThenExpectJson(): void 
-    // {
-    //     $label = 'Order Now!';
-    //     $payload = [
-    //         'product' => [
-    //             'id' => 23,
-    //             'name' => 'yamaha psr 3000',
-    //             'price' => 10000000,
-    //             'qty' => 1
-    //         ],
-    //         'payment' => 'Mandiri'
-    //     ];
-
-    //     $btn = Document::create()
-    //                 ->setLabel($label)
-    //                 ->setMethod(Document::METHOD_POST)
-    //                 ->setType(Document::TYPE_POSTBACK)
-    //                 ->setPayload($payload);
-
-    //     $this->assertEquals($btn->getLabel(), $label);
-    //     $this->assertEquals($btn->getMethod(), Document::METHOD_POST);
-    //     $this->assertEquals($btn->getType(), Document::TYPE_POSTBACK);
-    //     $this->assertEquals($btn->getUrl(), null);
-    //     $this->assertEquals($btn->getPayload(), $payload);
-
-    //     $this->assertEquals(json_encode($btn), json_encode([
-    //         'type' => Document::TYPE_POSTBACK,
-    //         'method' => Document::METHOD_POST,
-    //         'label' => $label,
-    //         'payload' => $payload,
-    //         'url' => null
-    //     ]));
-    // }
-
-    // public function testGivenUrlThenShowDefaultWithLink(): void
-    // {
-    //     $label = 'Go to Facebook';
-    //     $url = 'https://www.facebook.com';
-
-    //     $btn = Document::create()
-    //                 ->setLabel($label)
-    //                 ->setUrl($url);
-
-    //     $this->assertEquals($btn->getLabel(), $label);
-    //     $this->assertEquals($btn->getMethod(), Document::METHOD_GET);
-    //     $this->assertEquals($btn->getType(), Document::TYPE_LINK);
-    //     $this->assertEquals($btn->getUrl(), $url);
-    //     $this->assertEquals($btn->getPayload(), null);
-    // }
-    
 }
