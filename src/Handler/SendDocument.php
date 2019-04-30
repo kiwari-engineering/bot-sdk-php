@@ -2,9 +2,9 @@
 
 namespace Kiwari\Handler;
 
+use Kiwari\Util\Url;
 use Unirest\Request;
 use Unirest\Request\Body;
-use Kiwari\Util\Url;
 
 class SendDocument
 {
@@ -16,9 +16,7 @@ class SendDocument
             'access_token' => $accessToken,
             'type' => 'file_attachment',
             'topic_id' => $roomId,
-            'payload' => json_encode(
-                $document
-            )
+            'payload' => json_encode($document)
         ]));
     }
     

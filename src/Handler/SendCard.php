@@ -2,10 +2,9 @@
 
 namespace Kiwari\Handler;
 
+use Kiwari\Util\Url;
 use Unirest\Request;
 use Unirest\Request\Body;
-use Kiwari\Util\Url;
-
 
 class SendCard
 {
@@ -17,10 +16,7 @@ class SendCard
             'access_token' => $accessToken,
             'type' => 'card',
             'topic_id' => $roomId,
-            'payload' => 
-            json_encode(
-                $card
-            )
+            'payload' => json_encode($card)
         ]));
     }
 }

@@ -1,9 +1,10 @@
 <?php
 
 namespace Kiwari\Handler;
+
+use Kiwari\Util\Url;
 use Unirest\Request;
 use Unirest\Request\Body;
-use Kiwari\Util\Url;
 
 class SendImage
 {
@@ -15,9 +16,7 @@ class SendImage
             'access_token' => $accessToken,
             'type' => 'file_attachment',
             'topic_id' => $roomId,
-            'payload' => json_encode(
-                $image
-            )
+            'payload' => json_encode($image)
         ]));
     }
 }

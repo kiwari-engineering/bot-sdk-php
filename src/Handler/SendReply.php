@@ -15,9 +15,7 @@ class SendReply
             'access_token' => $accessToken,
             'type' => 'reply',
             'topic_id' => $roomId,
-            'payload' => json_encode(
-                $reply
-            )
+            'payload' => json_encode($reply)
         ]));
     }
 }

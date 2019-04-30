@@ -1,9 +1,10 @@
 <?php
 
 namespace Kiwari\Handler;
+
+use Kiwari\Util\Url;
 use Unirest\Request;
 use Unirest\Request\Body;
-use Kiwari\Util\Url;
 
 class SendCustom
 {
@@ -15,9 +16,7 @@ class SendCustom
             'access_token' => $accessToken,
             'type' => 'custom',
             'topic_id' => $roomId,
-            'payload' => json_encode(
-                $custom
-            )
+            'payload' => json_encode($custom)
         ]));
     }
 }

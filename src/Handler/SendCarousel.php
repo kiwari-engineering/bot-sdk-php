@@ -1,9 +1,10 @@
 <?php
 
 namespace Kiwari\Handler;
+
+use Kiwari\Util\Url;
 use Unirest\Request;
 use Unirest\Request\Body;
-use Kiwari\Util\Url;
 
 class SendCarousel
 {
@@ -16,9 +17,7 @@ class SendCarousel
             'type' => 'carousel',
             'topic_id' => $roomId,
             'comment' => "halocoba",
-            'payload' => json_encode(
-                $carousel
-            )
+            'payload' => json_encode($carousel)
         ]));
     }
 }

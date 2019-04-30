@@ -15,9 +15,7 @@ class SendLocation
             'access_token' => $accessToken,
             'type' => 'location',
             'topic_id' => $roomId,
-            'payload' => json_encode(
-                $location
-            )  
+            'payload' => json_encode($location)
         ]));
     }
 }
