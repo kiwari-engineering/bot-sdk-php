@@ -1,7 +1,6 @@
 <?php
 
 namespace Kiwari\Handler;
-
 use Unirest\Request;
 use Unirest\Request\Body;
 use Kiwari\Util\Url;
@@ -15,12 +14,11 @@ class SendButton
         ], Body::form([
             'access_token' => $accessToken,
             'type' => 'buttons',
-            'topic_id' => $roomId,
-            'comment' => 'buttons',
+            'topic_id' => 829055,
             'payload' => json_encode([
-                'text' => $text,
-                'buttons' => $btns
+                "text" => $text,
+                "buttons" => $btns
             ])
         ]));
-    }   
+    }
 }

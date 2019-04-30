@@ -3,9 +3,17 @@
 namespace Kiwari;
 
 use InvalidArgumentException;
-use Kiwari\Handler\SendText;
-use Kiwari\Handler\SendDocument;
 use Kiwari\Handler\SendButton;
+use Kiwari\Handler\SendCard;
+use Kiwari\Handler\SendCarousel;
+use Kiwari\Handler\SendCustom;
+use Kiwari\Handler\SendDocument;
+use Kiwari\Handler\SendImage;
+use Kiwari\Handler\SendLocation;
+use Kiwari\Handler\SendReply;
+use Kiwari\Handler\SendText;
+
+
 use Kiwari\Handler\Uploader;
 
 class Kiwari
@@ -91,47 +99,71 @@ class Kiwari
         return $response;
     }
 
-    public function sendCard()
-    {
-
-    }
-
-    public function sendCarousel()
-    {
-
-    }
-
-    public function sendCustom()
-    {
-
-    }
-
-    public function sendDocument(int $roomId, $fileUrl, $caption = null)
+    public function sendCard(int $roomId, $text, $card)
     {
         if ($roomId < 1) {
             throw new InvalidArgumentException("ROOM_ID can't be 0 [zero]");
         }
 
-        $response =  SendDocument::request($this->getAccessToken(), $roomId, $fileUrl, $caption);
+        return SendCard::request($this->getAccessToken(), $roomId, $text, $card);
+    }
+
+    public function sendCarousel(int $roomId, $carousel)
+    {
+        if ($roomId < 1) {
+            throw new InvalidArgumentException("ROOM_ID can't be 0 [zero]");
+        }
+
+        return SendCarousel::request($this->getAccessToken(), $roomId, $carousel);
+    }
+
+    public function sendCustom(int $roomId, $payload)
+    {
+        if ($roomId < 1) {
+            throw new InvalidArgumentException("ROOM_ID can't be 0 [zero]");
+        }
+
+        return SendCustom::request($this->getAccessToken(), $roomId, $payload);
+    }
+
+    public function sendDocument(int $roomId, $document)
+    {
+        if ($roomId < 1) {
+            throw new InvalidArgumentException("ROOM_ID can't be 0 [zero]");
+        }
+
+        $response =  SendDocument::request($this->getAccessToken(), $roomId, $document);
 
         $this->writeLog(json_encode($response), 'send-button');
 
         return $response;
     }
 
-    public function sendImage()
+    public function sendImage(int $roomId, $payload)
     {
+        if ($roomId < 1) {
+            throw new InvalidArgumentException("ROOM_ID can't be 0 [zero]");
+        }
 
+        return SendImage::request($this->getAccessToken(), $roomId, $payload);
     }
 
-    public function sendLocation()
+    public function sendLocation(int $roomId, $payload)
     {
+        if ($roomId < 1) {
+            throw new InvalidArgumentException("ROOM_ID can't be 0 [zero]");
+        }
 
+        return SendLocation::request($this->getAccessToken(), $roomId, $payload);
     }
 
-    public function sendReply()
+    public function sendReply(int $roomId, $payload)
     {
+        if ($roomId < 1) {
+            throw new InvalidArgumentException("ROOM_ID can't be 0 [zero]");
+        }
 
+        return SendReply::request($this->getAccessToken(), $roomId, $payload);
     }
 
     public function sendText(int $roomId = 0, string $message = '')
