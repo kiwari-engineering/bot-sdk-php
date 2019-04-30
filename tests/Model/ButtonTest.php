@@ -45,7 +45,6 @@ class ButtonTest extends TestCase
                     ->setMethod(Button::METHOD_POST)
                     ->setType(Button::TYPE_POSTBACK)
                     ->setPayload($payload);
-        var_dump(json_encode($btn));
         
         $this->assertEquals($btn->getLabel(), $label);
         $this->assertEquals($btn->getMethod(), Button::METHOD_POST);
