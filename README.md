@@ -167,6 +167,126 @@ $response = $bot->sendDocument($room['qiscus_room_id'], $upload->body->data->url
 var_dump($response);
 ```
 
+* **Send Card**
+
+```php
+<?php
+
+use Kiwari\Model\Card;
+
+$bot->sendCard($room['qiscus_room_id'], 'ini teks',
+    Card::create()
+        ->setText('Ini contoh textnya')
+        ->setImageUrl('https://vignette.wikia.nocookie.net/upinipin/images/1/13/4_jarjit.png/revision/latest?cb=20180203141217')
+        ->setTitle('ini contoh judulnya')
+        ->setDescription('ini contoh deskripsi')
+        ->setUrl('https://www.google.com/search?q=jarjit+singh&safe=off&rlz=1C5CHFA_enID828ID828&tbm=isch&source=iu&ictx=1&fir=fHecVrBhuDLpcM%253A%252CUAvPHuNZ8waOSM%252C_&vet=1&usg=AI4_-kR5h1JaCrqS6jGfMR41LepSu6XoWg&sa=X&ved=2ahUKEwi4qZW8-_7hAhVo63MBHS_NCrwQ9QEwA3oECAcQCg#imgrc=_&vet=1')
+        ->setButtons([
+            Button::create()
+                ->setLabel('Jarjit Singh')
+                ->setUrl('https://www.google.com/search?safe=off&source=hp&ei=rgbIXL6ZF8GEvQS1z5y4BQ&q=jarjit+singh&btnK=Google+Search&oq=jarjit+singh&gs_l=psy-ab.3..0l3j0i10l7.1892.2423..2633...0.0..0.110.518.5j1......0....1..gws-wiz.9PGvoF92CXU'),
+            Button::create()
+                ->setLabel('Jarjit Singh')
+                ->setUrl('https://www.google.com/search?safe=off&source=hp&ei=rgbIXL6ZF8GEvQS1z5y4BQ&q=jarjit+singh&btnK=Google+Search&oq=jarjit+singh&gs_l=psy-ab.3..0l3j0i10l7.1892.2423..2633...0.0..0.110.518.5j1......0....1..gws-wiz.9PGvoF92CXU')
+        ]));
+
+```
+
+* **Send Carousel**
+
+```php
+<?php
+
+use Kiwari\Model\Carousel;
+
+$bot->sendCarousel($room['qiscus_room_id'], 
+    Carousel::create()
+        ->setCards([
+            Card::create()
+                ->setText('Ini contoh textnya')
+                ->setImageUrl('https://vignette.wikia.nocookie.net/upinipin/images/1/13/4_jarjit.png/revision/latest?cb=20180203141217')
+                ->setTitle('ini contoh judulnya')
+                ->setDescription('ini contoh deskripsi')
+                ->setUrl('https://www.google.com/search?q=jarjit+singh&safe=off&rlz=1C5CHFA_enID828ID828&tbm=isch&source=iu&ictx=1&fir=fHecVrBhuDLpcM%253A%252CUAvPHuNZ8waOSM%252C_&vet=1&usg=AI4_-kR5h1JaCrqS6jGfMR41LepSu6XoWg&sa=X&ved=2ahUKEwi4qZW8-_7hAhVo63MBHS_NCrwQ9QEwA3oECAcQCg#imgrc=_&vet=1')
+                ->setButtons([
+                    Button::create()
+                        ->setLabel('Jarjit Singh')
+                        ->setUrl('https://www.google.com/search?safe=off&source=hp&ei=rgbIXL6ZF8GEvQS1z5y4BQ&q=jarjit+singh&btnK=Google+Search&oq=jarjit+singh&gs_l=psy-ab.3..0l3j0i10l7.1892.2423..2633...0.0..0.110.518.5j1......0....1..gws-wiz.9PGvoF92CXU'),
+                    Button::create()
+                        ->setLabel('Jarjit Singh')
+                        ->setUrl('https://www.google.com/search?safe=off&source=hp&ei=rgbIXL6ZF8GEvQS1z5y4BQ&q=jarjit+singh&btnK=Google+Search&oq=jarjit+singh&gs_l=psy-ab.3..0l3j0i10l7.1892.2423..2633...0.0..0.110.518.5j1......0....1..gws-wiz.9PGvoF92CXU')
+                ]),
+            Card::create()
+                ->setText('Ini contoh textnya')
+                ->setImageUrl('https://vignette.wikia.nocookie.net/upinipin/images/1/13/4_jarjit.png/revision/latest?cb=20180203141217')
+                ->setTitle('ini contoh judulnya')
+                ->setDescription('ini contoh deskripsi')
+                ->setUrl('https://www.google.com/search?q=jarjit+singh&safe=off&rlz=1C5CHFA_enID828ID828&tbm=isch&source=iu&ictx=1&fir=fHecVrBhuDLpcM%253A%252CUAvPHuNZ8waOSM%252C_&vet=1&usg=AI4_-kR5h1JaCrqS6jGfMR41LepSu6XoWg&sa=X&ved=2ahUKEwi4qZW8-_7hAhVo63MBHS_NCrwQ9QEwA3oECAcQCg#imgrc=_&vet=1')
+                ->setButtons([
+                    Button::create()
+                        ->setLabel('Jarjit Singh')
+                        ->setUrl('https://www.google.com/search?safe=off&source=hp&ei=rgbIXL6ZF8GEvQS1z5y4BQ&q=jarjit+singh&btnK=Google+Search&oq=jarjit+singh&gs_l=psy-ab.3..0l3j0i10l7.1892.2423..2633...0.0..0.110.518.5j1......0....1..gws-wiz.9PGvoF92CXU'),
+                    Button::create()
+                        ->setLabel('Jarjit Singh')
+                        ->setUrl('https://www.google.com/search?safe=off&source=hp&ei=rgbIXL6ZF8GEvQS1z5y4BQ&q=jarjit+singh&btnK=Google+Search&oq=jarjit+singh&gs_l=psy-ab.3..0l3j0i10l7.1892.2423..2633...0.0..0.110.518.5j1......0....1..gws-wiz.9PGvoF92CXU')
+                ])
+        ]));
+```
+
+* **Send Custom**
+
+```php
+<?php
+
+use Kiwari\Model\Custom;
+
+$bot->sendCustom($room['qiscus_room_id'], 
+    Custom::create()
+        ->setType('promo')
+        ->setContent([
+            'product' => [
+                'id' => 123,
+                'name' => 'sandal mahal',
+                'price' => 5000000
+            ],
+            'discount' => 0.1
+        ]));
+
+```
+
+* **Send Location**
+
+```php
+<?php
+
+use Kiwari\Model\Location;
+
+$name = "Mirota Kampus 2 Simanjuntak";
+$address = "Jalan C Simanjuntak No.70 ; Terban ; Gondokusuman ; Kota Yogyakarta ; Daerah Istimewa Yogyakarta 55223" ; 
+$latitude = -7.776235;
+$longitude = 110.374928;
+$mapUrl = "http://maps.google.com/?q=-7.776235 ;110.374928" ; 
+
+$location = Location::create()
+    ->setName($name)
+    ->setAddress($address)
+    ->setLatitude($latitude)
+    ->setLongitude($longitude)
+    ->setMapUrl($mapUrl);
+
+$bot->sendLocation($room['qiscus_room_id'], $location);
+```
+
+```php
+<?php
+
+use Kiwari\Model\Reply;
+
+$bot->sendReply($room['qiscus_room_id'], 
+    Reply::create()
+        ->setText('ini contoh reply')
+        ->setRepliedCommentId(22092099));
+```
 ## Example
 
 You can try example by using [this example](./example)
