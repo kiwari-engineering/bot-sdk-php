@@ -21,18 +21,7 @@ $sender = $bot->getSender();
 $room = $bot->getChatRoom();
 $message = $bot->getMessage();
 
-
-//type request postback for this demo bot
-// const TYPE_BUTTON = 'button';
-// const TYPE_CARD = 'card';
-// const TYPE_CAROUSEL = 'carousel';
-// const TYPE_CUSTOM = 'custom';
-// const TYPE_IMAGE = 'image';
-// const TYPE_AUDIO = 'audio';
-// const TYPE_LOCATION = 'location';
-// const TYPE_REPLY = 'reply';
-
-//perbaiki ini 
+$assetsPath = __DIR__ . DIRECTORY_SEPARATOR . 'assets' . DIRECTORY_SEPARATOR;
 
 switch ($message['text']) {
     case '/help':
@@ -57,6 +46,10 @@ switch ($message['text']) {
                     ->setUrl('https://google.com'),
                 Button::create()
                     ->setLabel('Contoh Audio File')
+                    ->setType(Button::TYPE_POSTBACK)
+                    ->setUrl('https://google.com'),
+                Button::create()
+                    ->setLabel('Contoh Video File')
                     ->setType(Button::TYPE_POSTBACK)
                     ->setUrl('https://google.com'),
                 Button::create()
@@ -103,16 +96,59 @@ switch ($message['text']) {
         $bot->sendText($room['qiscus_room_id'], 'ini dari contoh custom');
         break;
     case 'Contoh Image File':
-        $bot->sendText($room['qiscus_room_id'], 'ini dari contoh image file');
+
+        $imagePath = $assetsPath . 'image-sample.jpg';
+        $uploadedFile = $bot->upload($imagePath);
+
+        $bot->sendDocument($room['qiscus_room_id'], 
+            Document::create()
+                    ->setUrl($uploadedFile->body->data->url)
+                    ->setCaption('contoh caption'));
+
         break;
     case 'Contoh Audio File':
-        $bot->sendText($room['qiscus_room_id'], 'ini dari contoh audio file');
+        
+        $audioPath = $assetsPath . 'audio-sample.mp3';
+        $uploadedFile = $bot->upload($audioPath);
+
+        $bot->sendDocument($room['qiscus_room_id'],
+            Document::create()
+                    ->setUrl($uploadedFile->body->data->url)
+                    ->setCaption('ini contoh caption'));
+            
+        break;
+    case 'Contoh Video File':
+
+        $videoPath = $assetsPath . 'video-sample.mp4';
+        $uploadedFile = $bot->upload($videoPath);
+
+        $bot->sendDocument($room['qiscus_room_id'],
+            Document::create()
+                    ->setUrl($uploadedFile->body->data->url));
+
         break;
     case 'Contoh Location':
-        $bot->sendText($room['qiscus_room_id'], 'ini dari contoh location');
+        $name = "Mirota Kampus 2 Simanjuntak";
+        $address = "Jalan C Simanjuntak No.70 ; Terban ; Gondokusuman ; Kota Yogyakarta ; Daerah Istimewa Yogyakarta 55223" ; 
+        $latitude = -7.776235;
+        $longitude = 110.374928;
+        $mapUrl = "http://maps.google.com/?q=-7.776235 ;110.374928" ; 
+
+        $location = Location::create()
+            ->setName($name)
+            ->setAddress($address)
+            ->setLatitude($latitude)
+            ->setLongitude($longitude)
+            ->setMapUrl($mapUrl);
+        
+        $bot->sendLocation($room['qiscus_room_id'], $location);
+
         break;
     case 'Contoh Reply':
-        $bot->sendText($room['qiscus_room_id'], 'ini dari contoh reply');
+        $bot->sendReply($room['qiscus_room_id'], 
+            Reply::create()
+                ->setText('ini contoh reply')
+                ->setRepliedCommentId(22092099));
         break;
     case 'Contoh Text':
         $bot->sendText($room['qiscus_room_id'], 'ini dari contoh text');
@@ -122,55 +158,6 @@ switch ($message['text']) {
         $bot->sendText($room['qiscus_room_id'], 'Aduh, aku ga ngerti nih :P, tolong ketik /help');
         break;
 }
-
-// $bot->sendText($room['qiscus_room_id'], 'halo bro, ini dari kiwari bot sdk php');
-// $bot->sendText(829055, 'hai');
-
-// $path = '/Users/andhikayuana/Downloads/wav_wav_wavv.mp3';
-// $uploadedFile = $bot->upload($path);
-// var_dump($uploadedFile->body->data->url);
-// $fileUrl = 'https://d1edrlpyc25xu0.cloudfront.net/kiwari-prod/raw/upload/iaczqmgLLJ/wav_wav_wavv.mp3';
-// $res = $bot->sendDocument($room['qiscus_room_id'], $uploadedFile->body->data->url);
-// var_dump($res);
-// $res2 = $bot->sendButton($room['qiscus_room_id'], 'Ini adalah contoh teksnya ya atau bisa jadi deskripsinya', [
-//     \Kiwari\Model\Button::create()
-//         ->setLabel('Google')
-//         ->setUrl('https://google.com'),
-//     \Kiwari\Model\Button::create()
-//         ->setLabel('Facebook')
-//         ->setUrl('https://facebook.com'),
-//     \Kiwari\Model\Button::create()
-//         ->setLabel('Twitter')
-//         ->setUrl('https://twitter.com')
-// ]);
-
-// var_dump($res2);
-// var_dump($bot->getSender());
-// var_dump($bot->getMyAccount());
-// var_dump($bot->getChatRoom());
-// var_dump($bot->getMessage());
-
-// echo \Kiwari\Util\Url::BASE_URL;
-// echo \Kiwari\Util\Url::API_V1;
-// echo \Kiwari\Util\Url::POST_MESSAGE;
-
-
-/**
- *  - inisiasi: access_token
- *  - register webhook: pasang di dashboard
- *  - provide send[MessageType]
- */
-
-// $res = $bot->sendButton($room['qiscus_room_id']);
-// $res = $bot->sendCard($room['qiscus_room_id']);
-// $res = $bot->sendCarousel($room['qiscus_room_id']);
-// $res = $bot->sendCustom($room['qiscus_room_id']);
-// $res = $bot->sendDocument($room['qiscus_room_id'], $fileUrl);
-// $res = $bot->sendImage($room['qiscus_room_id']);
-// $res = $bot->sendLocation($room['qiscus_room_id']);
-// $res = $bot->sendReply($room['qiscus_room_id']);
-// $res = $bot->sendText($room['qiscus_room_ids'], $text);
-
 // $fileUrl = 'https://d1edrlpyc25xu0.cloudfront.net/kiwari-prod/raw/upload/iaczqmgLLJ/wav_wav_wavv.mp3';
 // $text = 'halo bro, ini dari kiwari bot sdk php';
 
@@ -229,22 +216,6 @@ switch ($message['text']) {
 //     ->setUrl($imageUrl)
 //     ->setCaption($text);
 
-// $name = "Mirota Kampus 2 Simanjuntak";
-// $address = "Jalan C Simanjuntak No.70 ; Terban ; Gondokusuman ; Kota Yogyakarta ; Daerah Istimewa Yogyakarta 55223" ; 
-// $latitude = -7.776235;
-// $longitude = 110.374928;
-// $map_url = "http://maps.google.com/?q=-7.776235 ;110.374928" ; 
-
-// $location = Location::create()
-//     ->setName($name)
-//     ->setAddress($address)
-//     ->setLatitude($latitude)
-//     ->setLongitude($longitude)
-//     ->setMapUrl($map_url);
-
-// $reply = Reply::create()
-//     ->setText($text)
-//     ->setRepliedCommentId(20900820);
 
 // $type = "promo"; 
 // $content = ["message" => "ini custom kok"];
