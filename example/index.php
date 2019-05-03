@@ -37,6 +37,10 @@ switch ($message['text']) {
                     ->setType(Button::TYPE_POSTBACK)
                     ->setUrl('https://google.com'),
                 Button::create()
+                    ->setLabel('Contoh Carousel')
+                    ->setType(Button::TYPE_POSTBACK)
+                    ->setUrl('https://google.com'),
+                Button::create()
                     ->setLabel('Contoh Custom')
                     ->setType(Button::TYPE_POSTBACK)
                     ->setUrl('https://google.com'),
@@ -84,16 +88,70 @@ switch ($message['text']) {
                 ->setLabel('Twitter')
                 ->setUrl('https://twitter.com')
         ]);
-
         break;
     case 'Contoh Card':
-        $bot->sendText($room['qiscus_room_id'], 'ini dari contoh card');
+        $bot->sendCard($room['qiscus_room_id'], 'ini teks',
+            Card::create()
+                ->setText('Ini contoh textnya')
+                ->setImageUrl('https://vignette.wikia.nocookie.net/upinipin/images/1/13/4_jarjit.png/revision/latest?cb=20180203141217')
+                ->setTitle('ini contoh judulnya')
+                ->setDescription('ini contoh deskripsi')
+                ->setUrl('https://www.google.com/search?q=jarjit+singh&safe=off&rlz=1C5CHFA_enID828ID828&tbm=isch&source=iu&ictx=1&fir=fHecVrBhuDLpcM%253A%252CUAvPHuNZ8waOSM%252C_&vet=1&usg=AI4_-kR5h1JaCrqS6jGfMR41LepSu6XoWg&sa=X&ved=2ahUKEwi4qZW8-_7hAhVo63MBHS_NCrwQ9QEwA3oECAcQCg#imgrc=_&vet=1')
+                ->setButtons([
+                    Button::create()
+                        ->setLabel('Jarjit Singh')
+                        ->setUrl('https://www.google.com/search?safe=off&source=hp&ei=rgbIXL6ZF8GEvQS1z5y4BQ&q=jarjit+singh&btnK=Google+Search&oq=jarjit+singh&gs_l=psy-ab.3..0l3j0i10l7.1892.2423..2633...0.0..0.110.518.5j1......0....1..gws-wiz.9PGvoF92CXU'),
+                    Button::create()
+                        ->setLabel('Jarjit Singh')
+                        ->setUrl('https://www.google.com/search?safe=off&source=hp&ei=rgbIXL6ZF8GEvQS1z5y4BQ&q=jarjit+singh&btnK=Google+Search&oq=jarjit+singh&gs_l=psy-ab.3..0l3j0i10l7.1892.2423..2633...0.0..0.110.518.5j1......0....1..gws-wiz.9PGvoF92CXU')
+                ]));
         break;
     case 'Contoh Carousel':
-        $bot->sendText($room['qiscus_room_id'], 'ini dari contoh carousel');
+        $bot->sendCarousel($room['qiscus_room_id'], 
+                Carousel::create()
+                    ->setCards([
+                        Card::create()
+                            ->setText('Ini contoh textnya')
+                            ->setImageUrl('https://vignette.wikia.nocookie.net/upinipin/images/1/13/4_jarjit.png/revision/latest?cb=20180203141217')
+                            ->setTitle('ini contoh judulnya')
+                            ->setDescription('ini contoh deskripsi')
+                            ->setUrl('https://www.google.com/search?q=jarjit+singh&safe=off&rlz=1C5CHFA_enID828ID828&tbm=isch&source=iu&ictx=1&fir=fHecVrBhuDLpcM%253A%252CUAvPHuNZ8waOSM%252C_&vet=1&usg=AI4_-kR5h1JaCrqS6jGfMR41LepSu6XoWg&sa=X&ved=2ahUKEwi4qZW8-_7hAhVo63MBHS_NCrwQ9QEwA3oECAcQCg#imgrc=_&vet=1')
+                            ->setButtons([
+                                Button::create()
+                                    ->setLabel('Jarjit Singh')
+                                    ->setUrl('https://www.google.com/search?safe=off&source=hp&ei=rgbIXL6ZF8GEvQS1z5y4BQ&q=jarjit+singh&btnK=Google+Search&oq=jarjit+singh&gs_l=psy-ab.3..0l3j0i10l7.1892.2423..2633...0.0..0.110.518.5j1......0....1..gws-wiz.9PGvoF92CXU'),
+                                Button::create()
+                                    ->setLabel('Jarjit Singh')
+                                    ->setUrl('https://www.google.com/search?safe=off&source=hp&ei=rgbIXL6ZF8GEvQS1z5y4BQ&q=jarjit+singh&btnK=Google+Search&oq=jarjit+singh&gs_l=psy-ab.3..0l3j0i10l7.1892.2423..2633...0.0..0.110.518.5j1......0....1..gws-wiz.9PGvoF92CXU')
+                            ]),
+                        Card::create()
+                            ->setText('Ini contoh textnya')
+                            ->setImageUrl('https://vignette.wikia.nocookie.net/upinipin/images/1/13/4_jarjit.png/revision/latest?cb=20180203141217')
+                            ->setTitle('ini contoh judulnya')
+                            ->setDescription('ini contoh deskripsi')
+                            ->setUrl('https://www.google.com/search?q=jarjit+singh&safe=off&rlz=1C5CHFA_enID828ID828&tbm=isch&source=iu&ictx=1&fir=fHecVrBhuDLpcM%253A%252CUAvPHuNZ8waOSM%252C_&vet=1&usg=AI4_-kR5h1JaCrqS6jGfMR41LepSu6XoWg&sa=X&ved=2ahUKEwi4qZW8-_7hAhVo63MBHS_NCrwQ9QEwA3oECAcQCg#imgrc=_&vet=1')
+                            ->setButtons([
+                                Button::create()
+                                    ->setLabel('Jarjit Singh')
+                                    ->setUrl('https://www.google.com/search?safe=off&source=hp&ei=rgbIXL6ZF8GEvQS1z5y4BQ&q=jarjit+singh&btnK=Google+Search&oq=jarjit+singh&gs_l=psy-ab.3..0l3j0i10l7.1892.2423..2633...0.0..0.110.518.5j1......0....1..gws-wiz.9PGvoF92CXU'),
+                                Button::create()
+                                    ->setLabel('Jarjit Singh')
+                                    ->setUrl('https://www.google.com/search?safe=off&source=hp&ei=rgbIXL6ZF8GEvQS1z5y4BQ&q=jarjit+singh&btnK=Google+Search&oq=jarjit+singh&gs_l=psy-ab.3..0l3j0i10l7.1892.2423..2633...0.0..0.110.518.5j1......0....1..gws-wiz.9PGvoF92CXU')
+                            ])
+                    ]));
         break;
     case 'Contoh Custom':
-        $bot->sendText($room['qiscus_room_id'], 'ini dari contoh custom');
+        $bot->sendCustom($room['qiscus_room_id'], 
+            Custom::create()
+                ->setType('promo')
+                ->setContent([
+                    'product' => [
+                        'id' => 123,
+                        'name' => 'sandal mahal',
+                        'price' => 5000000
+                    ],
+                    'discount' => 0.1
+                ]));
         break;
     case 'Contoh Image File':
 
