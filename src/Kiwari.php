@@ -92,8 +92,6 @@ class Kiwari
             throw new InvalidArgumentException("ROOM_ID can't be 0 [zero]");
         }
 
-        $this->writeLog(json_encode($btns), 'abc');
-
         $response = SendButton::request($this->getAccessToken(), $roomId, $text, $btns);
         
         $this->writeLog(json_encode($response), 'send-button');
